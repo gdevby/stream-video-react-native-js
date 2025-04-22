@@ -1,13 +1,14 @@
+import { ScreenLayout } from '@/src/components/ScreenLayout';
 import { Stack } from 'expo-router';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
 const NotFoundScreen = () => {
   return (
     <>
       <Stack.Screen options={{ title: 'Oops!' }} />
-      <View>
+      <ScreenLayout>
         <Text>Not found screen</Text>
-      </View>
+      </ScreenLayout>
     </>
   );
 };
