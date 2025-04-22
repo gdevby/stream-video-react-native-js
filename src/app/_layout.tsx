@@ -6,8 +6,8 @@ const RootLayout = () => {
   return (
     <>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false, navigationBarColor: Color.LightBlue }} />
+        <Stack.Screen name="+not-found" options={{ navigationBarColor: Color.LightBlue }} />
       </Stack>
       <StatusBar backgroundColor={Color.LightGray} />
     </>
