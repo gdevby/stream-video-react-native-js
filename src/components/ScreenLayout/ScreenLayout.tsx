@@ -1,6 +1,6 @@
 import { Color } from '@/src/lib/constants/Color';
 import { ReactNode } from 'react';
-import { View, ViewStyle } from 'react-native';
+import { ScrollView, ViewStyle } from 'react-native';
 
 type Props = {
   children: ReactNode;
@@ -8,5 +8,7 @@ type Props = {
 };
 
 export const ScreenLayout = ({ children, styles }: Props) => {
-  return <View style={{ flex: 1, backgroundColor: Color.LightGray, ...styles }}>{children}</View>;
+  return (
+    <ScrollView style={{ flex: 1, backgroundColor: Color.LightGray, padding: 16, ...styles }}>{children}</ScrollView>
+  );
 };
