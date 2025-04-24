@@ -1,13 +1,16 @@
 import { VideoPlayerIcon } from '@/src/components/icons/VideoPlayerIcon';
+import { Touchable } from '@/src/components/ui/Touchable';
 import { Color } from '@/src/lib/constants/Color';
 import { StyleSheet, Text, View } from 'react-native';
 
 export const BroadcastsButton = () => {
   return (
-    <View style={styles.videoPlayerContainer}>
-      <Text style={styles.text}>Трансляции</Text>
-      <VideoPlayerIcon />
-    </View>
+    <Touchable>
+      <View style={styles.videoPlayerContainer}>
+        <Text style={styles.text}>Трансляции</Text>
+        <VideoPlayerIcon />
+      </View>
+    </Touchable>
   );
 };
 
