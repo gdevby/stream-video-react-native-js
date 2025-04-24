@@ -3,7 +3,7 @@ import { CalendarIcon } from '@/src/components/icons/CalendarIcon';
 import { HomeIcon } from '@/src/components/icons/HomeIcon';
 import { ProjectIcon } from '@/src/components/icons/ProjectIcon';
 import { ShopIcon } from '@/src/components/icons/ShopIcon';
-import { Color } from '@/src/lib/constants/Color';
+import { Color } from '@/src/lib/constants/color';
 import { calendarUrl } from '@/src/lib/constants/common';
 import { Tabs } from 'expo-router';
 

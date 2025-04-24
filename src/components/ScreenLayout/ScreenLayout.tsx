@@ -1,4 +1,4 @@
-import { Color } from '@/src/lib/constants/Color';
+import { Color } from '@/src/lib/constants/color';
 import { ReactNode } from 'react';
 import { ScrollView, ViewStyle } from 'react-native';
 

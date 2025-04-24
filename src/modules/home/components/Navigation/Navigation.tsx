@@ -1,5 +1,5 @@
 import { Touchable } from '@/src/components/ui/Touchable';
-import { Color } from '@/src/lib/constants/Color';
+import { Color } from '@/src/lib/constants/color';
 import { calendarUrl } from '@/src/lib/constants/common';
 import { Link } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';

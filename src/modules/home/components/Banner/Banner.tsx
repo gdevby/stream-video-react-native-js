@@ -1,5 +1,5 @@
 import { ArrowRightIcon } from '@/src/components/icons/ArrowRightIcon';
-import { Color } from '@/src/lib/constants/Color';
+import { Color } from '@/src/lib/constants/color';
 import { StyleSheet, Text, View } from 'react-native';
 
 export const Banner = () => {
