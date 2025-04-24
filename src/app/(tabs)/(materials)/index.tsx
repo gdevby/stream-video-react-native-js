@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 const MaterialsScreen = () => {
   return (
     <ScreenLayout>
-      <Text>Materials screensadfasf</Text>
+      <Text>Materials screen</Text>
     </ScreenLayout>
   );
 };

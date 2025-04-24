@@ -9,6 +9,8 @@ type Props = {
 
 export const ScreenLayout = ({ children, styles }: Props) => {
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: Color.LightGray, padding: 16, ...styles }}>{children}</ScrollView>
+    <ScrollView style={{ backgroundColor: Color.LightGray, padding: 16 }} contentContainerStyle={styles}>
+      {children}
+    </ScrollView>
   );
 };
