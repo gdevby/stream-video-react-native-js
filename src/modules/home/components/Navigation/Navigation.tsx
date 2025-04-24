@@ -1,5 +1,6 @@
 import { Touchable } from '@/src/components/ui/Touchable';
 import { Color } from '@/src/lib/constants/Color';
+import { calendarUrl } from '@/src/lib/constants/common';
 import { Link } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -7,7 +8,7 @@ const list = [
   {
     title: 'Календарь',
     description: 'Смотрите календарь ближайших событий',
-    link: 'https://docs.google.com/spreadsheets/u/2/d/e/2PACX-1vQJVbia4YD2CkMshwHiVHVABIba7YkMPa4owSCr2HfmpC6dQI4xNxBWbLnwn-iR_CfwSEMlSYnGfieS/pubhtml#',
+    link: calendarUrl,
   },
   {
     title: 'Наши видеопроекты',

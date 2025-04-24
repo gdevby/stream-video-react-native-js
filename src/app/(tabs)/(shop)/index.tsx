@@ -1,12 +1,12 @@
 import { ScreenLayout } from '@/src/components/ScreenLayout';
 import { Text } from 'react-native';
 
-const MaterialsScreen = () => {
+const ShopScreen = () => {
   return (
     <ScreenLayout>
-      <Text>Materials screen</Text>
+      <Text>Shop Screen</Text>
     </ScreenLayout>
   );
 };
 
-export default MaterialsScreen;
+export default ShopScreen;

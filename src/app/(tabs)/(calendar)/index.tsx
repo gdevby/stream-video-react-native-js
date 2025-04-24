@@ -1,12 +1,12 @@
 import { ScreenLayout } from '@/src/components/ScreenLayout';
 import { Text } from 'react-native';
 
-const MaterialsScreen = () => {
+const CalendarScreen = () => {
   return (
     <ScreenLayout>
-      <Text>Materials screen</Text>
+      <Text>Calendar Screen</Text>
     </ScreenLayout>
   );
 };
 
-export default MaterialsScreen;
+export default CalendarScreen;
