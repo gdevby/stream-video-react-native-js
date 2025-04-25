@@ -36,13 +36,14 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: Color.LightBlue,
     borderRadius: 12,
-    padding: 8,
+    padding: 12,
   },
 
   leftContainer: {
-    gap: 8,
+    gap: 4,
   },
 
   title: {
