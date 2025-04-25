@@ -53,8 +53,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="(projects)/index"
         options={{
-          headerShown: false,
           title: 'Проекты',
+          headerTitle: 'Наши видеопроекты',
           tabBarIcon: ({ color }) => <ProjectIcon color={color} />,
         }}
       />

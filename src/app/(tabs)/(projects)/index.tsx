@@ -1,12 +1,22 @@
 import { ScreenLayout } from '@/src/components/ScreenLayout';
-import { Text } from 'react-native';
+import { Project } from '@/src/modules/projects/Project';
+import { StyleSheet, Text, View } from 'react-native';
 
 const ProjectsScreen = () => {
   return (
     <ScreenLayout>
-      <Text>Projects Screen</Text>
+      <View style={styles.container}>
+        <Project />
+        <Project />
+      </View>
     </ScreenLayout>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    gap: 8,
+  },
+});
 
 export default ProjectsScreen;
