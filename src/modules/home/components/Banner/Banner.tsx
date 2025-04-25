@@ -1,20 +1,26 @@
 import { ArrowRightIcon } from '@/src/components/icons/ArrowRightIcon';
+import { Touchable } from '@/src/components/ui/Touchable';
 import { Color } from '@/src/lib/constants/color';
+import { Link } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 export const Banner = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.text}>
-        <Text style={styles.title}>Наша группа Vk</Text>
-        <Text style={styles.subtitle}>Подробности по ссылке</Text>
-      </View>
-      <View style={styles.image}>
-        <View style={styles.button}>
-          <ArrowRightIcon />
+    <Link href="https://vk.com/artcaramelkids" asChild>
+      <Touchable>
+        <View style={styles.container}>
+          <View style={styles.text}>
+            <Text style={styles.title}>Наша группа Vk</Text>
+            <Text style={styles.subtitle}>Подробности по ссылке</Text>
+          </View>
+          <View style={styles.image}>
+            <View style={styles.button}>
+              <ArrowRightIcon />
+            </View>
+          </View>
         </View>
-      </View>
-    </View>
+      </Touchable>
+    </Link>
   );
 };
 
