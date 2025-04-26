@@ -1,3 +1,4 @@
+import { Tabs } from 'expo-router';
 import { BroadcastIcon } from '@/src/components/icons/BroadcastIcon';
 import { CalendarIcon } from '@/src/components/icons/CalendarIcon';
 import { HomeIcon } from '@/src/components/icons/HomeIcon';
@@ -5,7 +6,7 @@ import { ProjectIcon } from '@/src/components/icons/ProjectIcon';
 import { ShopIcon } from '@/src/components/icons/ShopIcon';
 import { Color } from '@/src/lib/constants/color';
 import { calendarUrl } from '@/src/lib/constants/common';
-import { Tabs } from 'expo-router';
+import { TabBarLabel } from '@/src/components/TabBarLabel';
 
 export default function TabLayout() {
   return (
@@ -17,11 +18,6 @@ export default function TabLayout() {
           height: 55,
           backgroundColor: Color.LightBlue,
         },
-        tabBarLabelStyle: {
-          fontSize: 8,
-          fontWeight: '400',
-          lineHeight: 12,
-        },
       }}
     >
       <Tabs.Screen
@@ -30,6 +26,9 @@ export default function TabLayout() {
           headerShown: false,
           title: 'Дом',
           tabBarIcon: ({ color }) => <HomeIcon color={color} />,
+          tabBarLabel: ({ children, focused }) => {
+            return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
+          },
         }}
       />
       <Tabs.Screen
@@ -39,6 +38,9 @@ export default function TabLayout() {
           headerShown: false,
           title: 'Календарь',
           tabBarIcon: ({ color }) => <CalendarIcon color={color} />,
+          tabBarLabel: ({ children, focused }) => {
+            return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
+          },
         }}
         listeners={{ tabPress: event => event.preventDefault() }}
       />
@@ -48,6 +50,9 @@ export default function TabLayout() {
           headerShown: false,
           title: 'Трансляции',
           tabBarIcon: ({ color }) => <BroadcastIcon color={color} />,
+          tabBarLabel: ({ children, focused }) => {
+            return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
+          },
         }}
       />
       <Tabs.Screen
@@ -56,6 +61,9 @@ export default function TabLayout() {
           title: 'Проекты',
           headerTitle: 'Наши видеопроекты',
           tabBarIcon: ({ color }) => <ProjectIcon color={color} />,
+          tabBarLabel: ({ children, focused }) => {
+            return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
+          },
         }}
       />
       <Tabs.Screen
@@ -65,16 +73,22 @@ export default function TabLayout() {
           headerShown: false,
           title: 'Материалы',
           tabBarIcon: ({ color }) => <ProjectIcon color={color} />,
+          tabBarLabel: ({ children, focused }) => {
+            return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
+          },
         }}
       />
+      {/* hide unused section */}
       <Tabs.Screen
         name="(shop)/index"
         options={{
-          // hide unused section
           href: null,
           headerShown: false,
           title: 'Магазин',
           tabBarIcon: ({ color }) => <ShopIcon color={color} />,
+          tabBarLabel: ({ children, focused }) => {
+            return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
+          },
         }}
       />
     </Tabs>
