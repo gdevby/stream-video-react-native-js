@@ -7,6 +7,7 @@ import { ShopIcon } from '@/src/components/icons/ShopIcon';
 import { Color } from '@/src/lib/constants/color';
 import { calendarUrl } from '@/src/lib/constants/common';
 import { TabBarLabel } from '@/src/components/TabBarLabel';
+import { BackButton } from '@/src/components/BackButton';
 
 export default function TabLayout() {
   return (
@@ -17,6 +18,18 @@ export default function TabLayout() {
         tabBarStyle: {
           height: 55,
           backgroundColor: Color.LightBlue,
+        },
+        headerTitleStyle: {
+          fontSize: 18,
+          fontWeight: 500,
+          color: '#0C3955',
+        },
+        headerStyle: {
+          backgroundColor: Color.LightGray,
+          borderWidth: 0,
+          height: 48,
+          shadowOpacity: 0,
+          elevation: 0,
         },
       }}
     >
@@ -63,6 +76,9 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <ProjectIcon color={color} />,
           tabBarLabel: ({ children, focused }) => {
             return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
+          },
+          headerLeft: () => {
+            return <BackButton />;
           },
         }}
       />
