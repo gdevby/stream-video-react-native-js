@@ -1,30 +1,33 @@
 import { ArrowRightCircleIcon } from '@/src/components/icons/ArrowRightCircleIcon';
 import { Touchable } from '@/src/components/ui/Touchable';
 import { Color } from '@/src/lib/constants/color';
+import { Link } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
-export const Material = () => {
+export const MaterialsFolder = () => {
   return (
-    <Touchable>
-      <View style={styles.container}>
-        <View style={styles.leftContainer}>
-          <Text style={styles.title}>Название папки</Text>
-          <Text style={styles.description}>Краткое описание, о чем информация</Text>
-          <View style={styles.numberOfMaterialsContainer}>
-            <View style={styles.point}></View>
-            <Text style={styles.numberOfMaterials}>6 файлов</Text>
-            <Text style={styles.counter}>(+1)</Text>
+    <Link href="(materials)/material-id" asChild>
+      <Touchable>
+        <View style={styles.container}>
+          <View style={styles.leftContainer}>
+            <Text style={styles.title}>Название папки</Text>
+            <Text style={styles.description}>Краткое описание, о чем информация</Text>
+            <View style={styles.numberOfMaterialsContainer}>
+              <View style={styles.point}></View>
+              <Text style={styles.numberOfMaterials}>6 файлов</Text>
+              <Text style={styles.counter}>(+1)</Text>
+            </View>
           </View>
-        </View>
-        <View style={styles.rightContainer}>
-          <View style={styles.image}>
-            <View style={styles.iconContainer}>
-              <ArrowRightCircleIcon />
+          <View style={styles.rightContainer}>
+            <View style={styles.image}>
+              <View style={styles.iconContainer}>
+                <ArrowRightCircleIcon />
+              </View>
             </View>
           </View>
         </View>
-      </View>
-    </Touchable>
+      </Touchable>
+    </Link>
   );
 };
 

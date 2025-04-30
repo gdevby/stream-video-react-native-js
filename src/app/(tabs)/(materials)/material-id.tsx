@@ -1,13 +1,11 @@
 import { ScreenLayout } from '@/src/components/ScreenLayout';
-import { MaterialsFolder } from '@/src/modules/materials/MaterialsFolder';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const MaterialsScreen = () => {
+const MaterialScreen = () => {
   return (
     <ScreenLayout>
       <View style={styles.container}>
-        <MaterialsFolder />
-        <MaterialsFolder />
+        <Text>Material</Text>
       </View>
     </ScreenLayout>
   );
@@ -19,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MaterialsScreen;
+export default MaterialScreen;
