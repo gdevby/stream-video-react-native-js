@@ -100,6 +100,12 @@ export default function TabLayout() {
           },
         }}
       />
+      <Tabs.Screen
+        name="(materials)/material-id"
+        options={{
+          href: null,
+        }}
+      />
       {/* hide unused section */}
       <Tabs.Screen
         name="(shop)/index"
