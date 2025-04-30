@@ -60,11 +60,14 @@ export default function TabLayout() {
       <Tabs.Screen
         name="(broadcasts)/index"
         options={{
-          headerShown: false,
           title: 'Трансляции',
+          headerTitle: 'Трансляции',
           tabBarIcon: ({ color }) => <BroadcastIcon color={color} />,
           tabBarLabel: ({ children, focused }) => {
             return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
+          },
+          headerLeft: () => {
+            return <BackButton href="(home)" />;
           },
         }}
       />
@@ -78,7 +81,7 @@ export default function TabLayout() {
             return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
           },
           headerLeft: () => {
-            return <BackButton />;
+            return <BackButton href="(home)" />;
           },
         }}
       />
@@ -86,11 +89,14 @@ export default function TabLayout() {
         name="(materials)/index"
         options={{
           href: null,
-          headerShown: false,
           title: 'Материалы',
+          headerTitle: 'Полезная информация',
           tabBarIcon: ({ color }) => <ProjectIcon color={color} />,
           tabBarLabel: ({ children, focused }) => {
             return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
+          },
+          headerLeft: () => {
+            return <BackButton href="(home)" />;
           },
         }}
       />

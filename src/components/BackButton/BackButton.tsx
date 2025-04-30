@@ -1,5 +1,14 @@
 import { ArrowLeftIcon } from '@/src/components/icons/ArrowLeftIcon';
+import { Link } from 'expo-router';
 
-export const BackButton = () => {
-  return <ArrowLeftIcon />;
+type Props = {
+  href?: string;
+};
+
+export const BackButton = ({ href = '/' }: Props) => {
+  return (
+    <Link href={href}>
+      <ArrowLeftIcon />
+    </Link>
+  );
 };
