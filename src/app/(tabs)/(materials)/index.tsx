@@ -1,12 +1,22 @@
 import { ScreenLayout } from '@/src/components/ScreenLayout';
-import { Text } from 'react-native';
+import { Material } from '@/src/modules/materials/Material';
+import { StyleSheet, View } from 'react-native';
 
 const MaterialsScreen = () => {
   return (
     <ScreenLayout>
-      <Text>Materials screen</Text>
+      <View style={styles.container}>
+        <Material />
+        <Material />
+      </View>
     </ScreenLayout>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    gap: 8,
+  },
+});
 
 export default MaterialsScreen;
