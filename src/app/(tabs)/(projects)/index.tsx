@@ -1,5 +1,5 @@
 import { ScreenLayout } from '@/src/components/ScreenLayout';
-import { Project } from '@/src/modules/projects/Project';
+import { Project } from '@/src/modules/projects/components/Project';
 import { StyleSheet, View } from 'react-native';
 
 const ProjectsScreen = () => {

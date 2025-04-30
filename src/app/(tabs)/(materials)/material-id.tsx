@@ -1,6 +1,6 @@
 import { ScreenLayout } from '@/src/components/ScreenLayout';
-import { Material } from '@/src/modules/materials/Material';
-import { StyleSheet, Text, View } from 'react-native';
+import { Material } from '@/src/modules/materials/components/Material';
+import { StyleSheet, View } from 'react-native';
 
 const MaterialScreen = () => {
   return (
