@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     height: 180,
     backgroundColor: Color.LightBlue,
-    borderRadius: 12,
+    borderRadius: 16,
     padding: 8,
   },
 

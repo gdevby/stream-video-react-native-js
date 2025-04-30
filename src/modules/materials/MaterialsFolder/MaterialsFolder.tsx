@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: Color.LightBlue,
-    borderRadius: 12,
+    borderRadius: 8,
     padding: 12,
   },
 
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 
   title: {
     color: '#0C3955',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
   },
 

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: Color.LightBlue,
-    borderRadius: 12,
+    borderRadius: 8,
     padding: 12,
   },
 
