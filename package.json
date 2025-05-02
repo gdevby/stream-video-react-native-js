@@ -6,10 +6,12 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "openapi:sdk": "npx openapi-generator-cli generate -i ./spec.json -g typescript-axios -o ./src/api --skip-validate-spec --additional-properties=supportsES6=true"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.74.4",
+    "axios": "^1.9.0",
     "expo": "~52.0.46",
     "expo-router": "~4.0.20",
     "expo-status-bar": "~2.0.1",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@openapitools/openapi-generator-cli": "^2.20.0",
     "@types/react": "~18.3.12",
     "typescript": "^5.3.3"
   },

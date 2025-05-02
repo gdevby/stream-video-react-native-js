@@ -1,0 +1,1656 @@
+{
+  "openapi": "3.0.1",
+  "info": { "title": "Stream application" },
+  "servers": [
+    { "url": "http://127.0.0.1:8090/back/api", "description": "local" },
+    { "url": "https://back.art-caramel.ru/back/api", "description": "remote" }
+  ],
+  "security": [{ "Bearer Authentication": [] }],
+  "paths": {
+    "/admin/broadcasts": {
+      "get": {
+        "tags": ["Объект стрим front/mobile(GET)"],
+        "description": "get-broadcast",
+        "operationId": "getCollectionResource-broadcast-get_1",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Zero-based page index (0..N)",
+            "required": false,
+            "schema": { "minimum": 0, "type": "integer", "default": 0 }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page to be returned",
+            "required": false,
+            "schema": { "minimum": 1, "type": "integer", "default": 20 }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "required": false,
+            "schema": { "type": "array", "items": { "type": "string" } }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/PagedModelEntityModelBroadcast" } },
+              "text/uri-list": { "schema": { "type": "string" } },
+              "application/x-spring-data-compact+json": {
+                "schema": { "$ref": "#/components/schemas/PagedModelEntityModelBroadcast" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Объект стрим front/mobile(GET)"],
+        "description": "create-broadcast",
+        "operationId": "postCollectionResource-broadcast-post",
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/BroadcastRequestBody" } } },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelBroadcast" } } }
+          }
+        }
+      }
+    },
+    "/admin/broadcasts/search/findAllByStatus": {
+      "get": {
+        "tags": ["Объект стрим front/mobile(GET)"],
+        "operationId": "executeSearch-broadcast-get",
+        "parameters": [
+          { "name": "status", "in": "query", "schema": { "type": "string", "enum": ["Online", "Future", "Finished"] } },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Zero-based page index (0..N)",
+            "required": false,
+            "schema": { "minimum": 0, "type": "integer", "default": 0 }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page to be returned",
+            "required": false,
+            "schema": { "minimum": 1, "type": "integer", "default": 20 }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "required": false,
+            "schema": { "type": "array", "items": { "type": "string" } }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/PagedModelEntityModelBroadcast" } }
+            }
+          },
+          "404": { "description": "Not Found" }
+        }
+      }
+    },
+    "/admin/broadcasts/search/findAllByTitle": {
+      "get": {
+        "tags": ["Объект стрим front/mobile(GET)"],
+        "operationId": "executeSearch-broadcast-get_1",
+        "parameters": [
+          { "name": "title", "in": "query", "schema": { "type": "string" } },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Zero-based page index (0..N)",
+            "required": false,
+            "schema": { "minimum": 0, "type": "integer", "default": 0 }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page to be returned",
+            "required": false,
+            "schema": { "minimum": 1, "type": "integer", "default": 20 }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "required": false,
+            "schema": { "type": "array", "items": { "type": "string" } }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/PagedModelEntityModelBroadcast" } }
+            }
+          },
+          "404": { "description": "Not Found" }
+        }
+      }
+    },
+    "/admin/broadcasts/search/findByStreamName": {
+      "get": {
+        "tags": ["Объект стрим front/mobile(GET)"],
+        "operationId": "executeSearch-broadcast-get_2",
+        "parameters": [{ "name": "streamName", "in": "query", "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelBroadcast" } } }
+          },
+          "404": { "description": "Not Found" }
+        }
+      }
+    },
+    "/admin/broadcasts/search/findByTitle": {
+      "get": {
+        "tags": ["Объект стрим front/mobile(GET)"],
+        "operationId": "executeSearch-broadcast-get_3",
+        "parameters": [{ "name": "title", "in": "query", "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelBroadcast" } } }
+          },
+          "404": { "description": "Not Found" }
+        }
+      }
+    },
+    "/admin/broadcasts/{id}": {
+      "get": {
+        "tags": ["Объект стрим front/mobile(GET)"],
+        "description": "get-broadcast",
+        "operationId": "getItemResource-broadcast-get",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelBroadcast" } } }
+          },
+          "404": { "description": "Not Found" }
+        }
+      },
+      "put": {
+        "tags": ["Объект стрим front/mobile(GET)"],
+        "description": "update-broadcast",
+        "operationId": "putItemResource-broadcast-put",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/BroadcastRequestBody" } } },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelBroadcast" } } }
+          },
+          "201": {
+            "description": "Created",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelBroadcast" } } }
+          },
+          "204": { "description": "No Content" }
+        }
+      },
+      "delete": {
+        "tags": ["Объект стрим front/mobile(GET)"],
+        "description": "delete-broadcast",
+        "operationId": "deleteItemResource-broadcast-delete",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "204": { "description": "No Content" }, "404": { "description": "Not Found" } }
+      },
+      "patch": {
+        "tags": ["Объект стрим front/mobile(GET)"],
+        "description": "patch-broadcast",
+        "operationId": "patchItemResource-broadcast-patch",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/BroadcastRequestBody" } } },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelBroadcast" } } }
+          },
+          "204": { "description": "No Content" }
+        }
+      }
+    },
+    "/admin/materialFolders": {
+      "get": {
+        "tags": ["material-folder-entity-controller"],
+        "description": "get-materialfolder",
+        "operationId": "getCollectionResource-materialfolder-get_1",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Zero-based page index (0..N)",
+            "required": false,
+            "schema": { "minimum": 0, "type": "integer", "default": 0 }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page to be returned",
+            "required": false,
+            "schema": { "minimum": 1, "type": "integer", "default": 20 }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "required": false,
+            "schema": { "type": "array", "items": { "type": "string" } }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": { "$ref": "#/components/schemas/PagedModelEntityModelMaterialFolder" }
+              },
+              "text/uri-list": { "schema": { "type": "string" } },
+              "application/x-spring-data-compact+json": {
+                "schema": { "$ref": "#/components/schemas/PagedModelEntityModelMaterialFolder" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["material-folder-entity-controller"],
+        "description": "create-materialfolder",
+        "operationId": "postCollectionResource-materialfolder-post",
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MaterialFolderRequestBody" } } },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelMaterialFolder" } }
+            }
+          }
+        }
+      }
+    },
+    "/admin/materialFolders/search/findFirstByFolderName": {
+      "get": {
+        "tags": ["material-folder-search-controller"],
+        "operationId": "executeSearch-materialfolder-get",
+        "parameters": [{ "name": "folderName", "in": "query", "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelMaterialFolder" } }
+            }
+          },
+          "404": { "description": "Not Found" }
+        }
+      }
+    },
+    "/admin/materialFolders/{id}": {
+      "get": {
+        "tags": ["material-folder-entity-controller"],
+        "description": "get-materialfolder",
+        "operationId": "getItemResource-materialfolder-get",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelMaterialFolder" } }
+            }
+          },
+          "404": { "description": "Not Found" }
+        }
+      },
+      "put": {
+        "tags": ["material-folder-entity-controller"],
+        "description": "update-materialfolder",
+        "operationId": "putItemResource-materialfolder-put",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MaterialFolderRequestBody" } } },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelMaterialFolder" } }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelMaterialFolder" } }
+            }
+          },
+          "204": { "description": "No Content" }
+        }
+      },
+      "delete": {
+        "tags": ["material-folder-entity-controller"],
+        "description": "delete-materialfolder",
+        "operationId": "deleteItemResource-materialfolder-delete",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "204": { "description": "No Content" }, "404": { "description": "Not Found" } }
+      },
+      "patch": {
+        "tags": ["material-folder-entity-controller"],
+        "description": "patch-materialfolder",
+        "operationId": "patchItemResource-materialfolder-patch",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MaterialFolderRequestBody" } } },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelMaterialFolder" } }
+            }
+          },
+          "204": { "description": "No Content" }
+        }
+      }
+    },
+    "/admin/materialFolders/{id}/materials": {
+      "get": {
+        "tags": ["material-folder-property-reference-controller"],
+        "description": "get-referencematerial-by-materialfolder-Id",
+        "operationId": "followPropertyReference-materialfolder-get_1",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/CollectionModelReferenceMaterial" } },
+              "text/uri-list": { "schema": { "type": "string" } }
+            }
+          },
+          "404": { "description": "Not Found" }
+        }
+      },
+      "put": {
+        "tags": ["material-folder-property-reference-controller"],
+        "description": "update-referencematerial-by-materialfolder-Id",
+        "operationId": "createPropertyReference-materialfolder-put",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/CollectionModelObject" } },
+            "text/uri-list": { "schema": { "type": "string" } },
+            "application/x-spring-data-compact+json": {
+              "schema": { "$ref": "#/components/schemas/CollectionModelObject" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/CollectionModelReferenceMaterial" } }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/CollectionModelReferenceMaterial" } }
+            }
+          },
+          "204": { "description": "No Content" }
+        }
+      },
+      "delete": {
+        "tags": ["material-folder-property-reference-controller"],
+        "description": "delete-referencematerial-by-materialfolder-Id",
+        "operationId": "deletePropertyReference-materialfolder-delete",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "204": { "description": "No Content" }, "404": { "description": "Not Found" } }
+      },
+      "patch": {
+        "tags": ["material-folder-property-reference-controller"],
+        "description": "patch-referencematerial-by-materialfolder-Id",
+        "operationId": "createPropertyReference-materialfolder-patch",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/CollectionModelObject" } },
+            "text/uri-list": { "schema": { "type": "string" } },
+            "application/x-spring-data-compact+json": {
+              "schema": { "$ref": "#/components/schemas/CollectionModelObject" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/CollectionModelReferenceMaterial" } }
+            }
+          },
+          "204": { "description": "No Content" }
+        }
+      }
+    },
+    "/admin/materialFolders/{id}/materials/{propertyId}": {
+      "get": {
+        "tags": ["material-folder-property-reference-controller"],
+        "description": "get-referencematerial-by-materialfolder-Id",
+        "operationId": "followPropertyReference-materialfolder-get",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } },
+          { "name": "propertyId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/CollectionModelReferenceMaterial" } }
+            }
+          },
+          "404": { "description": "Not Found" }
+        }
+      },
+      "delete": {
+        "tags": ["material-folder-property-reference-controller"],
+        "description": "delete-referencematerial-by-materialfolder-Id",
+        "operationId": "deletePropertyReferenceId-materialfolder-delete",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } },
+          { "name": "propertyId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": { "204": { "description": "No Content" }, "404": { "description": "Not Found" } }
+      }
+    },
+    "/admin/playlists": {
+      "get": {
+        "tags": ["Объект плейлист front/mobile(GET)"],
+        "description": "get-playlist",
+        "operationId": "getCollectionResource-playlist-get_1",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Zero-based page index (0..N)",
+            "required": false,
+            "schema": { "minimum": 0, "type": "integer", "default": 0 }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page to be returned",
+            "required": false,
+            "schema": { "minimum": 1, "type": "integer", "default": 20 }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "required": false,
+            "schema": { "type": "array", "items": { "type": "string" } }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/PagedModelEntityModelPlaylist" } },
+              "text/uri-list": { "schema": { "type": "string" } },
+              "application/x-spring-data-compact+json": {
+                "schema": { "$ref": "#/components/schemas/PagedModelEntityModelPlaylist" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Объект плейлист front/mobile(GET)"],
+        "description": "create-playlist",
+        "operationId": "postCollectionResource-playlist-post",
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/PlaylistRequestBody" } } },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelPlaylist" } } }
+          }
+        }
+      }
+    },
+    "/admin/playlists/{id}": {
+      "get": {
+        "tags": ["Объект плейлист front/mobile(GET)"],
+        "description": "get-playlist",
+        "operationId": "getItemResource-playlist-get",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelPlaylist" } } }
+          },
+          "404": { "description": "Not Found" }
+        }
+      },
+      "put": {
+        "tags": ["Объект плейлист front/mobile(GET)"],
+        "description": "update-playlist",
+        "operationId": "putItemResource-playlist-put",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/PlaylistRequestBody" } } },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelPlaylist" } } }
+          },
+          "201": {
+            "description": "Created",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelPlaylist" } } }
+          },
+          "204": { "description": "No Content" }
+        }
+      },
+      "delete": {
+        "tags": ["Объект плейлист front/mobile(GET)"],
+        "description": "delete-playlist",
+        "operationId": "deleteItemResource-playlist-delete",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "204": { "description": "No Content" }, "404": { "description": "Not Found" } }
+      },
+      "patch": {
+        "tags": ["Объект плейлист front/mobile(GET)"],
+        "description": "patch-playlist",
+        "operationId": "patchItemResource-playlist-patch",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/PlaylistRequestBody" } } },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelPlaylist" } } }
+          },
+          "204": { "description": "No Content" }
+        }
+      }
+    },
+    "/admin/profile": {
+      "get": {
+        "tags": ["profile-controller"],
+        "operationId": "listAllFormsOfMetadata_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/RepresentationModelObject" } }
+            }
+          }
+        }
+      }
+    },
+    "/admin/profile/broadcasts": {
+      "get": {
+        "tags": ["profile-controller"],
+        "operationId": "descriptor_1_1_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string" } },
+              "application/alps+json": { "schema": { "type": "string" } },
+              "application/schema+json": { "schema": { "$ref": "#/components/schemas/JsonSchema" } }
+            }
+          }
+        }
+      }
+    },
+    "/admin/profile/materialFolders": {
+      "get": {
+        "tags": ["profile-controller"],
+        "operationId": "descriptor_1_1_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string" } },
+              "application/alps+json": { "schema": { "type": "string" } },
+              "application/schema+json": { "schema": { "$ref": "#/components/schemas/JsonSchema" } }
+            }
+          }
+        }
+      }
+    },
+    "/admin/profile/playlists": {
+      "get": {
+        "tags": ["profile-controller"],
+        "operationId": "descriptor_1_1_3",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string" } },
+              "application/alps+json": { "schema": { "type": "string" } },
+              "application/schema+json": { "schema": { "$ref": "#/components/schemas/JsonSchema" } }
+            }
+          }
+        }
+      }
+    },
+    "/admin/profile/referenceMaterials": {
+      "get": {
+        "tags": ["profile-controller"],
+        "operationId": "descriptor_1_1_4",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "type": "string" } },
+              "application/alps+json": { "schema": { "type": "string" } },
+              "application/schema+json": { "schema": { "$ref": "#/components/schemas/JsonSchema" } }
+            }
+          }
+        }
+      }
+    },
+    "/admin/referenceMaterials": {
+      "get": {
+        "tags": ["Объект справочный материал front/mobile(GET)"],
+        "description": "get-referencematerial",
+        "operationId": "getCollectionResource-referencematerial-get_1",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Zero-based page index (0..N)",
+            "required": false,
+            "schema": { "minimum": 0, "type": "integer", "default": 0 }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page to be returned",
+            "required": false,
+            "schema": { "minimum": 1, "type": "integer", "default": 20 }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "required": false,
+            "schema": { "type": "array", "items": { "type": "string" } }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": { "$ref": "#/components/schemas/PagedModelEntityModelReferenceMaterial" }
+              },
+              "text/uri-list": { "schema": { "type": "string" } },
+              "application/x-spring-data-compact+json": {
+                "schema": { "$ref": "#/components/schemas/PagedModelEntityModelReferenceMaterial" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Объект справочный материал front/mobile(GET)"],
+        "description": "create-referencematerial",
+        "operationId": "postCollectionResource-referencematerial-post",
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/ReferenceMaterialRequestBody" } }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelReferenceMaterial" } }
+            }
+          }
+        }
+      }
+    },
+    "/admin/referenceMaterials/{id}": {
+      "get": {
+        "tags": ["Объект справочный материал front/mobile(GET)"],
+        "description": "get-referencematerial",
+        "operationId": "getItemResource-referencematerial-get",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelReferenceMaterial" } }
+            }
+          },
+          "404": { "description": "Not Found" }
+        }
+      },
+      "put": {
+        "tags": ["Объект справочный материал front/mobile(GET)"],
+        "description": "update-referencematerial",
+        "operationId": "putItemResource-referencematerial-put",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/ReferenceMaterialRequestBody" } }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelReferenceMaterial" } }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelReferenceMaterial" } }
+            }
+          },
+          "204": { "description": "No Content" }
+        }
+      },
+      "delete": {
+        "tags": ["Объект справочный материал front/mobile(GET)"],
+        "description": "delete-referencematerial",
+        "operationId": "deleteItemResource-referencematerial-delete",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "204": { "description": "No Content" }, "404": { "description": "Not Found" } }
+      },
+      "patch": {
+        "tags": ["Объект справочный материал front/mobile(GET)"],
+        "description": "patch-referencematerial",
+        "operationId": "patchItemResource-referencematerial-patch",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/ReferenceMaterialRequestBody" } }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/EntityModelReferenceMaterial" } }
+            }
+          },
+          "204": { "description": "No Content" }
+        }
+      }
+    },
+    "/playlist/upload": {
+      "post": {
+        "tags": ["front"],
+        "operationId": "createPlaylist",
+        "parameters": [
+          { "name": "title", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "link", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": ["file"],
+                "type": "object",
+                "properties": { "file": { "type": "string", "format": "binary" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/PlaylistDto" } } }
+          }
+        }
+      }
+    },
+    "/broadcast/start": {
+      "post": {
+        "tags": ["front/mobile"],
+        "operationId": "startStream",
+        "requestBody": { "content": { "application/json": { "schema": { "type": "string" } } }, "required": true },
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/broadcast/end": {
+      "post": {
+        "tags": ["front/mobile"],
+        "operationId": "endStream",
+        "requestBody": { "content": { "application/json": { "schema": { "type": "string" } } }, "required": true },
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/auth/sign-up": {
+      "post": {
+        "tags": ["auth-controller"],
+        "operationId": "signUp",
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SignUpRequest" } } },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/JwtAuthenticationResponse" } }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sign-in": {
+      "post": {
+        "tags": ["auth-controller"],
+        "operationId": "signIn",
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SignInRequest" } } },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/JwtAuthenticationResponse" } }
+            }
+          }
+        }
+      }
+    },
+    "/auth/admin/give": {
+      "post": {
+        "tags": ["auth-controller"],
+        "operationId": "giveRights",
+        "parameters": [{ "name": "username", "in": "query", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/UserDto" } } }
+          }
+        }
+      }
+    },
+    "/admin/referenceMaterials/upload": {
+      "post": {
+        "tags": ["front"],
+        "operationId": "uploadMaterial",
+        "parameters": [
+          { "name": "name", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "folderName", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": ["file"],
+                "type": "object",
+                "properties": { "file": { "type": "string", "format": "binary" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/ReferenceMaterialDto" } } }
+          }
+        }
+      }
+    },
+    "/admin/referenceMaterials/folder": {
+      "post": {
+        "tags": ["front"],
+        "operationId": "createFolder",
+        "parameters": [
+          { "name": "name", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "description", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": ["file"],
+                "type": "object",
+                "properties": { "file": { "type": "string", "format": "binary" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/MaterialFolderDto" } } }
+          }
+        }
+      }
+    },
+    "/playlist/patch/{id}": {
+      "patch": {
+        "tags": ["front"],
+        "operationId": "changePlaylist",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } },
+          { "name": "link", "in": "query", "required": false, "schema": { "type": "string" } },
+          { "name": "title", "in": "query", "required": false, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": { "type": "object", "properties": { "file": { "type": "string", "format": "binary" } } }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/PlaylistDto" } } }
+          }
+        }
+      }
+    },
+    "/admin/referenceMaterials/folder/{id}": {
+      "delete": {
+        "tags": ["front"],
+        "operationId": "deleteFolder",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/MaterialFolderDto" } } }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["front"],
+        "operationId": "changeFolder",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } },
+          { "name": "folderName", "in": "query", "required": false, "schema": { "type": "string" } },
+          { "name": "description", "in": "query", "required": false, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": { "type": "object", "properties": { "file": { "type": "string", "format": "binary" } } }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/MaterialFolderDto" } } }
+          }
+        }
+      }
+    },
+    "/stream/{name}": {
+      "get": {
+        "tags": ["mobile"],
+        "operationId": "getStream",
+        "parameters": [{ "name": "name", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/hal+json": { "schema": { "type": "string" } } } }
+        }
+      }
+    },
+    "/playlist/{id}": {
+      "get": {
+        "tags": ["front"],
+        "operationId": "getPlaylist",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/PlaylistDto" } } }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["front"],
+        "operationId": "deletePlaylist",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/PlaylistDto" } } }
+          }
+        }
+      }
+    },
+    "/playlist/image/{id}": {
+      "get": {
+        "tags": ["front"],
+        "operationId": "viewImage",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "type": "string", "format": "binary" } } }
+          }
+        }
+      }
+    },
+    "/playlist/all": {
+      "get": {
+        "tags": ["front"],
+        "operationId": "getPlaylist_1",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 0 }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          },
+          { "name": "sort", "in": "query", "required": false, "schema": { "type": "string", "default": "id" } },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "enum": ["ASC", "DESC"], "default": "asc" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/PagedModelEntityModelPlaylistDto" } }
+            }
+          }
+        }
+      }
+    },
+    "/broadcast/status": {
+      "get": {
+        "tags": ["front/mobile"],
+        "operationId": "getSortedBroadcast",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 0 }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "enum": ["Online", "Future", "Finished"] }
+          },
+          { "name": "title", "in": "query", "required": false, "schema": { "type": "string" } },
+          { "name": "sort", "in": "query", "required": false, "schema": { "type": "string", "default": "id" } },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "enum": ["ASC", "DESC"], "default": "asc" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/PagedModelEntityModelBroadcastDto" } }
+            }
+          }
+        }
+      }
+    },
+    "/admin/users": {
+      "get": {
+        "tags": ["user-controller"],
+        "operationId": "getUsers",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 0 }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          },
+          { "name": "sort", "in": "query", "required": false, "schema": { "type": "string", "default": "id,ASC" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": { "schema": { "$ref": "#/components/schemas/PagedModelEntityModelUserDto" } }
+            }
+          }
+        }
+      }
+    },
+    "/admin/referenceMaterials/view/{folderId}": {
+      "get": {
+        "tags": ["front"],
+        "operationId": "getFolderLogo",
+        "parameters": [
+          { "name": "folderId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "type": "string", "format": "binary" } } }
+          }
+        }
+      }
+    },
+    "/admin/referenceMaterials/materials/{folderId}": {
+      "get": {
+        "tags": ["front"],
+        "operationId": "getMaterialsInFolder",
+        "parameters": [
+          { "name": "folderId", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/ReferenceMaterialDto" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/referenceMaterials/folders": {
+      "get": {
+        "tags": ["front"],
+        "operationId": "getFolders",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/MaterialFolderDto" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/referenceMaterials/download/{id}": {
+      "get": {
+        "tags": ["front"],
+        "operationId": "downloadFile",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "type": "string", "format": "binary" } } }
+          }
+        }
+      }
+    },
+    "/broadcast/{name}": {
+      "delete": {
+        "tags": ["front/mobile"],
+        "operationId": "deleteStreamFiles",
+        "parameters": [{ "name": "name", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/broadcast/all": {
+      "delete": {
+        "tags": ["front/mobile"],
+        "operationId": "deleteAllBroadcasts",
+        "responses": {
+          "200": { "description": "OK", "content": { "application/hal+json": { "schema": { "type": "string" } } } }
+        }
+      }
+    },
+    "/auth/admin/delete": {
+      "delete": {
+        "tags": ["auth-controller"],
+        "operationId": "deleteRights",
+        "parameters": [{ "name": "username", "in": "query", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/UserDto" } } }
+          }
+        }
+      }
+    },
+    "/admin/referenceMaterials/delete/{id}": {
+      "delete": {
+        "tags": ["front"],
+        "operationId": "deleteMaterial",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/hal+json": { "schema": { "$ref": "#/components/schemas/ReferenceMaterialDto" } } }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AbstractJsonSchemaPropertyObject": {
+        "type": "object",
+        "properties": { "title": { "type": "string" }, "readOnly": { "type": "boolean" } }
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "properties": {
+            "type": "object",
+            "additionalProperties": { "$ref": "#/components/schemas/AbstractJsonSchemaPropertyObject" }
+          },
+          "requiredProperties": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "JsonSchema": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "properties": {
+            "type": "object",
+            "additionalProperties": { "$ref": "#/components/schemas/AbstractJsonSchemaPropertyObject" }
+          },
+          "requiredProperties": { "type": "array", "items": { "type": "string" } },
+          "definitions": { "type": "object", "additionalProperties": { "$ref": "#/components/schemas/Item" } },
+          "type": { "type": "string" },
+          "$schema": { "type": "string" }
+        }
+      },
+      "Links": { "type": "object", "additionalProperties": { "$ref": "#/components/schemas/Link" } },
+      "RepresentationModelObject": {
+        "type": "object",
+        "properties": { "_links": { "$ref": "#/components/schemas/Links" } }
+      },
+      "EntityModelPlaylist": {
+        "type": "object",
+        "properties": {
+          "previewPath": { "type": "string" },
+          "title": { "type": "string" },
+          "link": { "type": "string" },
+          "_links": { "$ref": "#/components/schemas/Links" }
+        }
+      },
+      "PageMetadata": {
+        "type": "object",
+        "properties": {
+          "size": { "type": "integer", "format": "int64" },
+          "totalElements": { "type": "integer", "format": "int64" },
+          "totalPages": { "type": "integer", "format": "int64" },
+          "number": { "type": "integer", "format": "int64" }
+        }
+      },
+      "PagedModelEntityModelPlaylist": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "playlists": { "type": "array", "items": { "$ref": "#/components/schemas/EntityModelPlaylist" } }
+            }
+          },
+          "_links": { "$ref": "#/components/schemas/Links" },
+          "page": { "$ref": "#/components/schemas/PageMetadata" }
+        }
+      },
+      "EntityModelMaterialFolder": {
+        "type": "object",
+        "properties": {
+          "folderName": { "type": "string" },
+          "description": { "type": "string" },
+          "pathToLogo": { "type": "string" },
+          "_links": { "$ref": "#/components/schemas/Links" }
+        }
+      },
+      "PagedModelEntityModelMaterialFolder": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "materialFolders": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/EntityModelMaterialFolder" }
+              }
+            }
+          },
+          "_links": { "$ref": "#/components/schemas/Links" },
+          "page": { "$ref": "#/components/schemas/PageMetadata" }
+        }
+      },
+      "CollectionModelReferenceMaterial": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "referenceMaterials": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/ReferenceMaterialResponse" }
+              }
+            }
+          },
+          "_links": { "$ref": "#/components/schemas/Links" }
+        }
+      },
+      "CollectionModelObject": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": { "objects": { "type": "array", "items": { "type": "object" } } }
+          },
+          "_links": { "$ref": "#/components/schemas/Links" }
+        }
+      },
+      "EntityModelReferenceMaterial": {
+        "required": ["fileName", "localPath", "materialName"],
+        "type": "object",
+        "properties": {
+          "materialName": { "type": "string" },
+          "fileName": { "type": "string" },
+          "localPath": { "type": "string" },
+          "_links": { "$ref": "#/components/schemas/Links" }
+        }
+      },
+      "PagedModelEntityModelReferenceMaterial": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "referenceMaterials": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/EntityModelReferenceMaterial" }
+              }
+            }
+          },
+          "_links": { "$ref": "#/components/schemas/Links" },
+          "page": { "$ref": "#/components/schemas/PageMetadata" }
+        }
+      },
+      "EntityModelBroadcast": {
+        "required": ["dateOfStart", "status", "streamName", "title"],
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "enum": ["Online", "Future", "Finished"] },
+          "dateOfStart": { "type": "string", "format": "date-time" },
+          "dateOfEnd": { "type": "string", "format": "date-time" },
+          "title": { "type": "string" },
+          "streamName": { "type": "string" },
+          "_links": { "$ref": "#/components/schemas/Links" }
+        }
+      },
+      "PagedModelEntityModelBroadcast": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "broadcasts": { "type": "array", "items": { "$ref": "#/components/schemas/EntityModelBroadcast" } }
+            }
+          },
+          "_links": { "$ref": "#/components/schemas/Links" },
+          "page": { "$ref": "#/components/schemas/PageMetadata" }
+        }
+      },
+      "BroadcastRequestBody": {
+        "required": ["dateOfStart", "status", "streamName", "title"],
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "status": { "type": "string", "enum": ["Online", "Future", "Finished"] },
+          "dateOfStart": { "type": "string", "format": "date-time" },
+          "dateOfEnd": { "type": "string", "format": "date-time" },
+          "title": { "type": "string" },
+          "streamName": { "type": "string" }
+        }
+      },
+      "MaterialFolderRequestBody": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "folderName": { "type": "string" },
+          "description": { "type": "string" },
+          "pathToLogo": { "type": "string" },
+          "materials": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "ReferenceMaterialRequestBody": {
+        "required": ["fileName", "localPath", "materialName"],
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "materialName": { "type": "string" },
+          "fileName": { "type": "string" },
+          "localPath": { "type": "string" }
+        }
+      },
+      "ReferenceMaterialResponse": {
+        "required": ["fileName", "localPath", "materialName"],
+        "type": "object",
+        "properties": {
+          "materialName": { "type": "string" },
+          "fileName": { "type": "string" },
+          "localPath": { "type": "string" }
+        }
+      },
+      "PlaylistRequestBody": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "previewPath": { "type": "string" },
+          "title": { "type": "string" },
+          "link": { "type": "string" }
+        }
+      },
+      "PlaylistDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "title": { "type": "string" },
+          "link": { "type": "string" }
+        }
+      },
+      "SignUpRequest": {
+        "required": ["firstname", "lastname", "username"],
+        "type": "object",
+        "properties": {
+          "username": { "maxLength": 50, "minLength": 4, "type": "string" },
+          "password": { "maxLength": 255, "minLength": 4, "type": "string" },
+          "firstname": { "maxLength": 50, "minLength": 4, "type": "string" },
+          "lastname": { "maxLength": 50, "minLength": 4, "type": "string" }
+        }
+      },
+      "JwtAuthenticationResponse": { "type": "object", "properties": { "token": { "type": "string" } } },
+      "SignInRequest": {
+        "required": ["username"],
+        "type": "object",
+        "properties": {
+          "username": { "maxLength": 50, "minLength": 4, "type": "string" },
+          "password": { "maxLength": 255, "minLength": 0, "type": "string" }
+        }
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "username": { "type": "string" },
+          "firstname": { "type": "string" },
+          "lastname": { "type": "string" },
+          "role": { "type": "string" }
+        }
+      },
+      "ReferenceMaterialDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "materialName": { "type": "string" },
+          "fileName": { "type": "string" }
+        }
+      },
+      "MaterialFolderDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "folderName": { "type": "string" },
+          "description": { "type": "string" },
+          "materials": { "type": "array", "items": { "$ref": "#/components/schemas/ReferenceMaterialDto" } }
+        }
+      },
+      "EntityModelPlaylistDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "title": { "type": "string" },
+          "link": { "type": "string" },
+          "_links": { "$ref": "#/components/schemas/Links" }
+        }
+      },
+      "PagedModelEntityModelPlaylistDto": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "playlistDtoes": { "type": "array", "items": { "$ref": "#/components/schemas/EntityModelPlaylistDto" } }
+            }
+          },
+          "_links": { "$ref": "#/components/schemas/Links" },
+          "page": { "$ref": "#/components/schemas/PageMetadata" }
+        }
+      },
+      "EntityModelBroadcastDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "status": { "type": "string" },
+          "dateOfStart": { "type": "string", "format": "date-time" },
+          "dateOfEnd": { "type": "string", "format": "date-time" },
+          "title": { "type": "string" },
+          "streamName": { "type": "string" },
+          "_links": { "$ref": "#/components/schemas/Links" }
+        }
+      },
+      "PagedModelEntityModelBroadcastDto": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "broadcastDtoes": { "type": "array", "items": { "$ref": "#/components/schemas/EntityModelBroadcastDto" } }
+            }
+          },
+          "_links": { "$ref": "#/components/schemas/Links" },
+          "page": { "$ref": "#/components/schemas/PageMetadata" }
+        }
+      },
+      "EntityModelUserDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "username": { "type": "string" },
+          "firstname": { "type": "string" },
+          "lastname": { "type": "string" },
+          "role": { "type": "string" },
+          "_links": { "$ref": "#/components/schemas/Links" }
+        }
+      },
+      "PagedModelEntityModelUserDto": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "userDtoes": { "type": "array", "items": { "$ref": "#/components/schemas/EntityModelUserDto" } }
+            }
+          },
+          "_links": { "$ref": "#/components/schemas/Links" },
+          "page": { "$ref": "#/components/schemas/PageMetadata" }
+        }
+      },
+      "Link": {
+        "type": "object",
+        "properties": {
+          "href": { "type": "string" },
+          "hreflang": { "type": "string" },
+          "title": { "type": "string" },
+          "type": { "type": "string" },
+          "deprecation": { "type": "string" },
+          "profile": { "type": "string" },
+          "name": { "type": "string" },
+          "templated": { "type": "boolean" }
+        }
+      }
+    },
+    "securitySchemes": { "Bearer Authentication": { "type": "http", "scheme": "bearer", "bearerFormat": "JWT" } }
+  }
+}
