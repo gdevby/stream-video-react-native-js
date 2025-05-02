@@ -1,34 +1,59 @@
+import { Link } from 'expo-router';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { EntityModelPlaylist } from '@/src/api';
 import { ArrowRightTopIcon } from '@/src/components/icons/ArrowRightTopIcon';
 import { PlayIcon } from '@/src/components/icons/PlayIcon';
 import { TimeDurationIcon } from '@/src/components/icons/TimeDurationIcon';
 import { Touchable } from '@/src/components/ui/Touchable';
 import { Color } from '@/src/lib/constants/color';
-import { StyleSheet, Text, View } from 'react-native';
+import { getEntityIdBySelfHref } from '@/src/lib/utils/getEntityIdBySelfHref';
 
-export const Project = () => {
+type Props = {
+  project: EntityModelPlaylist;
+};
+
+export const Project = ({ project }: Props) => {
+  const { title, previewPath, link, _links } = project;
+  const isDateShown = false;
+  const isTimeShown = false;
+  const projectId = getEntityIdBySelfHref(_links?.self.href as string);
+  const url = `https://prod-back.art-caramel.ru/back/api/playlist/image/${projectId}`;
+
   return (
-    <Touchable>
-      <View style={styles.container}>
-        <View style={styles.leftContainer}>
-          <Text style={styles.title}>Горячий лёд</Text>
-          <View style={styles.dateContainer}>
-            <Text style={styles.date}>21.10.2024</Text>
-            <View style={styles.timeContainer}>
-              <TimeDurationIcon />
-              <Text style={styles.time}>12:24</Text>
+    <Link href={link ?? ''} asChild>
+      <Touchable>
+        <View style={styles.container}>
+          <View style={styles.leftContainer}>
+            <Text style={styles.title}>{title}</Text>
+            <View style={styles.dateContainer}>
+              {isDateShown && <Text style={styles.date}>21.10.2024</Text>}
+              {isTimeShown && (
+                <View style={styles.timeContainer}>
+                  <TimeDurationIcon />
+                  <Text style={styles.time}>12:24</Text>
+                </View>
+              )}
             </View>
           </View>
-        </View>
-        <View style={styles.rightContainer}>
-          <View style={styles.image}>
-            <View style={styles.playIconContainer}>
-              <PlayIcon />
+          <View style={styles.rightContainer}>
+            <View>
+              <Image
+                width={66}
+                height={43}
+                borderRadius={4}
+                source={{
+                  uri: url,
+                }}
+              ></Image>
+              <View style={styles.playIconContainer}>
+                <PlayIcon />
+              </View>
             </View>
+            <ArrowRightTopIcon />
           </View>
-          <ArrowRightTopIcon />
         </View>
-      </View>
-    </Touchable>
+      </Touchable>
+    </Link>
   );
 };
 
@@ -78,13 +103,6 @@ const styles = StyleSheet.create({
   rightContainer: {
     flexDirection: 'row',
     gap: 4,
-  },
-
-  image: {
-    width: 66,
-    height: 43,
-    backgroundColor: Color.DarkBlue,
-    borderRadius: 4,
   },
 
   playIconContainer: {
