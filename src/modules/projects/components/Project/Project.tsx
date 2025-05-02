@@ -37,14 +37,16 @@ export const Project = ({ project }: Props) => {
           </View>
           <View style={styles.rightContainer}>
             <View>
-              <Image
-                width={66}
-                height={43}
-                borderRadius={4}
-                source={{
-                  uri: url,
-                }}
-              ></Image>
+              <View style={{ filter: 'brightness(0.8)' }}>
+                <Image
+                  width={66}
+                  height={43}
+                  borderRadius={4}
+                  source={{
+                    uri: url,
+                  }}
+                />
+              </View>
               <View style={styles.playIconContainer}>
                 <PlayIcon />
               </View>
