@@ -12,13 +12,13 @@
  * Do not edit the class manually.
  */
 
+import { BASE_BACKEND_PATH_API } from '@/src/lib/constants/common';
 import type { Configuration } from './configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 
-const BASE_BACKEND_PATH_API = 'https://prod-back.art-caramel.ru/back/api';
 export const BASE_PATH = `${BASE_BACKEND_PATH_API}`.replace(/\/+$/, '');
 
 /**

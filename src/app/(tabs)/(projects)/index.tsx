@@ -8,26 +8,24 @@ import { useQuery } from '@tanstack/react-query';
 const api = new FrontMobileGETApi();
 
 const ProjectsScreen = () => {
-  const queryKey = 'playlists';
+  const queryKey = 'playlist';
   const currentPage = 0;
   const currentPageSize = 1000;
 
   const { data, isFetching } = useQuery({
-    queryKey: [queryKey, currentPage, currentPageSize],
+    queryKey: [queryKey],
     queryFn: async () =>
       api.getCollectionResourcePlaylistGet1(currentPage, currentPageSize, [`id,${SortingDirection.DESC}`]),
-    placeholderData: previousData => previousData,
   });
-
-  console.log(data?.data._embedded?.playlists);
 
   return (
     <ScreenLayout>
       <View style={styles.container}>
         {isFetching && <ActivityIndicator size="large" />}
-        {data?.data._embedded?.playlists?.map(project => {
-          return <Project key={project.title} project={project} />;
-        })}
+        {!isFetching &&
+          data?.data._embedded?.playlists?.map(project => {
+            return <Project key={project.title} project={project} />;
+          })}
       </View>
     </ScreenLayout>
   );

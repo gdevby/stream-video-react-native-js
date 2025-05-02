@@ -1,28 +1,57 @@
+import { MaterialFolderDto } from '@/src/api';
 import { ArrowRightCircleIcon } from '@/src/components/icons/ArrowRightCircleIcon';
 import { Touchable } from '@/src/components/ui/Touchable';
 import { Color } from '@/src/lib/constants/color';
+import { BASE_BACKEND_PATH_API } from '@/src/lib/constants/common';
 import { Link } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
-export const MaterialsFolder = () => {
+const getFileWordByNumberOfMaterials = (numberOfMaterials: number = 0) => {
+  if (numberOfMaterials === 0) return 'файлов';
+  if (numberOfMaterials === 1) return 'файл';
+  if (numberOfMaterials === 2 || numberOfMaterials === 3 || numberOfMaterials === 4) return 'файла';
+  return 'файлов';
+};
+
+type Props = {
+  materialsFolder: MaterialFolderDto;
+};
+
+export const MaterialsFolder = ({ materialsFolder }: Props) => {
+  const { id, folderName, description, materials } = materialsFolder;
+  const numberOfMaterials = materials?.length;
+  // TODO show counter
+  const isCounterShown = false;
+  const imageUrl = `${BASE_BACKEND_PATH_API}/admin/referenceMaterials/view/${id}`;
+  const fileWord = getFileWordByNumberOfMaterials(numberOfMaterials);
+
   return (
     <Link href="(materials)/material-id" asChild>
       <Touchable>
         <View style={styles.container}>
           <View style={styles.leftContainer}>
-            <Text style={styles.title}>Название папки</Text>
-            <Text style={styles.description}>Краткое описание, о чем информация</Text>
+            <Text style={styles.title}>{folderName}</Text>
+            <Text style={styles.description}>{description}</Text>
             <View style={styles.numberOfMaterialsContainer}>
               <View style={styles.point}></View>
-              <Text style={styles.numberOfMaterials}>6 файлов</Text>
-              <Text style={styles.counter}>(+1)</Text>
+              <Text style={styles.numberOfMaterials}>
+                {numberOfMaterials} {fileWord}
+              </Text>
+              {isCounterShown && <Text style={styles.counter}>(+1)</Text>}
             </View>
           </View>
+
           <View style={styles.rightContainer}>
-            <View style={styles.image}>
-              <View style={styles.iconContainer}>
-                <ArrowRightCircleIcon />
-              </View>
+            <Image
+              width={74}
+              height={74}
+              borderRadius={6}
+              source={{
+                uri: imageUrl,
+              }}
+            />
+            <View style={styles.iconContainer}>
+              <ArrowRightCircleIcon />
             </View>
           </View>
         </View>
@@ -85,13 +114,6 @@ const styles = StyleSheet.create({
   rightContainer: {
     flexDirection: 'row',
     gap: 4,
-  },
-
-  image: {
-    width: 74,
-    height: 74,
-    backgroundColor: Color.DarkBlue,
-    borderRadius: 6,
   },
 
   iconContainer: {

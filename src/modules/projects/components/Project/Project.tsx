@@ -7,17 +7,20 @@ import { TimeDurationIcon } from '@/src/components/icons/TimeDurationIcon';
 import { Touchable } from '@/src/components/ui/Touchable';
 import { Color } from '@/src/lib/constants/color';
 import { getEntityIdBySelfHref } from '@/src/lib/utils/getEntityIdBySelfHref';
+import { BASE_BACKEND_PATH_API } from '@/src/lib/constants/common';
 
 type Props = {
   project: EntityModelPlaylist;
 };
 
 export const Project = ({ project }: Props) => {
-  const { title, previewPath, link, _links } = project;
+  const { title, link, _links } = project;
+  // TODO show date
   const isDateShown = false;
+  // TODO show time
   const isTimeShown = false;
   const projectId = getEntityIdBySelfHref(_links?.self.href as string);
-  const url = `https://prod-back.art-caramel.ru/back/api/playlist/image/${projectId}`;
+  const imageUrl = `${BASE_BACKEND_PATH_API}/playlist/image/${projectId}`;
 
   return (
     <Link href={link ?? ''} asChild>
@@ -45,7 +48,7 @@ export const Project = ({ project }: Props) => {
                   height={43}
                   borderRadius={4}
                   source={{
-                    uri: url,
+                    uri: imageUrl,
                   }}
                 />
               </View>
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    gap: 4,
+    gap: 8,
     backgroundColor: Color.LightBlue,
     borderRadius: 8,
     padding: 12,
