@@ -1,3 +1,6 @@
+import { ListIcon } from '@/src/components/icons/ListIcon';
+import { SearchIcon } from '@/src/components/icons/SearchIcon';
+import { Color } from '@/src/lib/constants/color';
 import { SortButton } from '@/src/modules/broadcasts/components/BroadcastHeader/components/SortButton';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -32,7 +35,7 @@ export const BroadcastHeader = () => {
   const [selectedSort, setSelectedSort] = useState<`${Sort}`>(Sort.All);
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.sortContainer}>
         {data.map(({ name, sort }) => {
           return (
@@ -42,14 +45,39 @@ export const BroadcastHeader = () => {
           );
         })}
       </View>
-      <View>{/* TODO add icons */}</View>
+      <View style={styles.iconsContainer}>
+        <View style={styles.iconWrapper}>
+          <ListIcon />
+        </View>
+        <View style={styles.iconWrapper}>
+          <SearchIcon />
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    gap: 8,
+  },
+
   sortContainer: {
     flexDirection: 'row',
     gap: 1,
+  },
+
+  iconsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  iconWrapper: {
+    width: 40,
+    height: 40,
+    backgroundColor: Color.LightBlue,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 1000,
   },
 });
