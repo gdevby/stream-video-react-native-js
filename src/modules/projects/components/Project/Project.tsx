@@ -24,7 +24,9 @@ export const Project = ({ project }: Props) => {
       <Touchable>
         <View style={styles.container}>
           <View style={styles.leftContainer}>
-            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+              {title}
+            </Text>
             <View style={styles.dateContainer}>
               {isDateShown && <Text style={styles.date}>21.10.2024</Text>}
               {isTimeShown && (
@@ -64,6 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: 4,
     backgroundColor: Color.LightBlue,
     borderRadius: 8,
     padding: 12,
