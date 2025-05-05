@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 const api = new FrontMobileGETApi();
 
 const ProjectsScreen = () => {
-  const queryKey = 'playlist';
+  const queryKey = 'getCollectionResourcePlaylistGet1';
   const currentPage = 0;
   const currentPageSize = 1000;
 

@@ -7,7 +7,7 @@ import { FrontApi } from '@/src/api';
 const api = new FrontApi();
 
 const MaterialsScreen = () => {
-  const queryKey = 'playlist';
+  const queryKey = 'getFolders';
 
   const { data, isFetching } = useQuery({
     queryKey: [queryKey],
