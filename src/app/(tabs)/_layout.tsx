@@ -101,7 +101,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="(materials)/material-id"
+        name="(materials)/[materialsFolderId]"
         options={{
           href: null,
         }}

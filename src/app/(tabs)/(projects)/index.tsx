@@ -5,7 +5,7 @@ import { SortingDirection } from '@/src/lib/types/SortingDirection';
 import { Project } from '@/src/modules/projects/components/Project';
 import { useQuery } from '@tanstack/react-query';
 
-const api = new FrontMobileGETApi();
+const frontMobileGetApi = new FrontMobileGETApi();
 
 const ProjectsScreen = () => {
   const queryKey = 'getCollectionResourcePlaylistGet1';
@@ -15,7 +15,9 @@ const ProjectsScreen = () => {
   const { data, isFetching } = useQuery({
     queryKey: [queryKey],
     queryFn: async () =>
-      api.getCollectionResourcePlaylistGet1(currentPage, currentPageSize, [`id,${SortingDirection.DESC}`]),
+      frontMobileGetApi.getCollectionResourcePlaylistGet1(currentPage, currentPageSize, [
+        `id,${SortingDirection.DESC}`,
+      ]),
   });
 
   return (

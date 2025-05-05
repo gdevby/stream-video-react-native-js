@@ -26,7 +26,7 @@ export const MaterialsFolder = ({ materialsFolder }: Props) => {
   const fileWord = getFileWordByNumberOfMaterials(numberOfMaterials);
 
   return (
-    <Link href="(materials)/material-id" asChild>
+    <Link href={`(materials)/${id}`} asChild>
       <Touchable>
         <View style={styles.container}>
           <View style={styles.leftContainer}>

@@ -4,14 +4,14 @@ import { ScreenLayout } from '@/src/components/ScreenLayout';
 import { MaterialsFolder } from '@/src/modules/materials/components/MaterialsFolder';
 import { FrontApi } from '@/src/api';
 
-const api = new FrontApi();
+const frontApi = new FrontApi();
 
 const MaterialsScreen = () => {
   const queryKey = 'getFolders';
 
   const { data, isFetching } = useQuery({
     queryKey: [queryKey],
-    queryFn: async () => api.getFolders(),
+    queryFn: async () => frontApi.getFolders(),
   });
 
   return (
