@@ -1,45 +1,48 @@
+import { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { GetSortedBroadcastStatusEnum } from '@/src/api';
 import { ListIcon } from '@/src/components/icons/ListIcon';
 import { SearchIcon } from '@/src/components/icons/SearchIcon';
 import { Color } from '@/src/lib/constants/color';
 import { SortButton } from '@/src/modules/broadcasts/components/BroadcastHeader/components/SortButton';
-import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-
-enum Sort {
-  All = 'all',
-  Online = 'online',
-  Future = 'future',
-  Past = 'past',
-}
 
 const data = [
   {
-    sort: Sort.All,
+    status: undefined,
     name: 'Все',
   },
   {
-    sort: Sort.Online,
+    status: GetSortedBroadcastStatusEnum.Online,
     name: 'Онлайн',
   },
   {
-    sort: Sort.Future,
+    status: GetSortedBroadcastStatusEnum.Future,
     name: 'Будущие',
   },
   {
-    sort: Sort.Past,
+    status: GetSortedBroadcastStatusEnum.Finished,
     name: 'Прошедшие',
   },
 ];
 
-export const BroadcastHeader = () => {
-  const [selectedSort, setSelectedSort] = useState<`${Sort}`>(Sort.All);
+type Props = {
+  onStatusChange: (status?: `${GetSortedBroadcastStatusEnum}`) => void;
+};
+
+export const BroadcastHeader = ({ onStatusChange }: Props) => {
+  const [currentStatus, setCurrentStatus] = useState<`${GetSortedBroadcastStatusEnum}`>();
+
+  const handleSortButtonPress = (status?: `${GetSortedBroadcastStatusEnum}`) => {
+    setCurrentStatus(status);
+    onStatusChange(status);
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.sortContainer}>
-        {data.map(({ name, sort }) => {
+        {data.map(({ name, status }) => {
           return (
-            <SortButton key={name} isSelected={selectedSort === sort} onPress={() => setSelectedSort(sort)}>
+            <SortButton key={name} isSelected={currentStatus === status} onPress={() => handleSortButtonPress(status)}>
               {name}
             </SortButton>
           );

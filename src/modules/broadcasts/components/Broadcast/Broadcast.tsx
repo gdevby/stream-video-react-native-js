@@ -1,11 +1,30 @@
+import { StyleSheet, Text, View } from 'react-native';
+import { EntityModelBroadcastDto } from '@/src/api';
+import dayjs from 'dayjs';
 import { PlayCircleIcon } from '@/src/components/icons/PlayCircleIcon';
 import { TimeDurationIcon } from '@/src/components/icons/TimeDurationIcon';
 import { Touchable } from '@/src/components/ui/Touchable';
 import { Color } from '@/src/lib/constants/color';
-import { StyleSheet, Text, View } from 'react-native';
 
-export const Broadcast = () => {
+type Props = {
+  broadcast: EntityModelBroadcastDto;
+};
+
+export const Broadcast = ({ broadcast }: Props) => {
+  const { title, dateOfStart, dateOfEnd } = broadcast;
   const isNew = true;
+
+  const formatDate = dayjs(dateOfStart).format('DD.MM.YYYY');
+
+  // TODO wrong duration of broadcast
+  let duration: string | undefined = undefined;
+
+  if (dateOfEnd) {
+    const difference = dayjs(dateOfEnd).diff(dayjs(dateOfStart), 'minute');
+    const hours = Math.floor(difference / 60);
+    const minutes = Math.floor(difference % 60);
+    duration = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+  }
 
   return (
     <Touchable>
@@ -17,14 +36,16 @@ export const Broadcast = () => {
                 <Text style={styles.label}>Новинка!</Text>
               </View>
             )}
-            <Text style={styles.title}>Горячий лёд</Text>
+            <Text style={styles.title}>{title}</Text>
           </View>
           <View style={styles.dateContainer}>
-            <Text style={styles.date}>21.10.2024</Text>
-            <View style={styles.timeContainer}>
-              <TimeDurationIcon />
-              <Text style={styles.time}>12:24</Text>
-            </View>
+            <Text style={styles.date}>{formatDate}</Text>
+            {duration && (
+              <View style={styles.timeContainer}>
+                <TimeDurationIcon />
+                <Text style={styles.time}>{duration}</Text>
+              </View>
+            )}
           </View>
         </View>
         <View style={styles.rightContainer}>
