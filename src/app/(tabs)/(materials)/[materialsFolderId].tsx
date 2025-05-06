@@ -13,7 +13,7 @@ const MaterialScreen = () => {
   const queryKey = 'getMaterialsInFolder';
 
   const { data, isFetching } = useQuery({
-    queryKey: [queryKey],
+    queryKey: [queryKey, materialsFolderId],
     queryFn: async () => frontApi.getMaterialsInFolder(Number(materialsFolderId)),
   });
 

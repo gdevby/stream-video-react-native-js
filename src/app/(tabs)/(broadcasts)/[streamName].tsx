@@ -1,9 +1,9 @@
+import { useEvent, useEventListener } from 'expo';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { ScreenLayout } from '@/src/components/ScreenLayout';
 import { Color } from '@/src/lib/constants/color';
 import { BASE_BACKEND_PATH } from '@/src/lib/constants/common';
-import { useEvent, useEventListener } from 'expo';
 import { useLocalSearchParams } from 'expo-router';
 
 const width = Dimensions.get('window').width;
