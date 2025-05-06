@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   labelContainer: {},
 
   label: {
-    color: '#fff',
+    color: Color.White,
     fontSize: 12,
     fontWeight: 600,
     backgroundColor: '#F54734',

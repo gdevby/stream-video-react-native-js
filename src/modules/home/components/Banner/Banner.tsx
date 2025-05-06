@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: '#fff',
+    color: Color.White,
     fontSize: 18,
     fontWeight: '600',
   },
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#fff',
+    color: Color.White,
   },
 
   rightContainer: {
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     right: 8,
     height: 34,
     width: 34,
-    backgroundColor: '#fff',
+    backgroundColor: Color.White,
     borderRadius: 1000,
   },
 });

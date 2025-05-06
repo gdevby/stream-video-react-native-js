@@ -1,9 +1,12 @@
+import { Dimensions, StyleSheet, View } from 'react-native';
+import { useVideoPlayer, VideoView } from 'expo-video';
 import { ScreenLayout } from '@/src/components/ScreenLayout';
+import { Color } from '@/src/lib/constants/color';
 import { BASE_BACKEND_PATH } from '@/src/lib/constants/common';
 import { useEvent, useEventListener } from 'expo';
 import { useLocalSearchParams } from 'expo-router';
-import { useVideoPlayer, VideoView } from 'expo-video';
-import { Button, StyleSheet, View } from 'react-native';
+
+const width = Dimensions.get('window').width;
 
 const VideoPlayerScreen = () => {
   const { streamName } = useLocalSearchParams();
@@ -25,18 +28,6 @@ const VideoPlayerScreen = () => {
     <ScreenLayout styles={styles.container}>
       <View>
         <VideoView style={styles.video} player={player} allowsFullscreen allowsPictureInPicture />
-        <View style={styles.controlsContainer}>
-          <Button
-            title={isPlaying ? 'Pause' : 'Play'}
-            onPress={() => {
-              if (isPlaying) {
-                player.pause();
-              } else {
-                player.play();
-              }
-            }}
-          />
-        </View>
       </View>
     </ScreenLayout>
   );
@@ -47,13 +38,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: Color.Black,
   },
   video: {
-    width: 350,
-    height: 275,
-  },
-  controlsContainer: {
-    padding: 10,
+    width: width,
+    height: width / (16 / 9),
   },
 });
 

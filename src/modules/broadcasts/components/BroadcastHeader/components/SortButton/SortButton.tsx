@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
   },
 
   textSelected: {
-    color: '#FFFFFF',
+    color: Color.White,
   },
 });
