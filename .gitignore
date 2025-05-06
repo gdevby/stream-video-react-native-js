@@ -37,3 +37,6 @@ yarn-error.*
 
 .env
 /src/api/docs/*
+
+android
+ios
