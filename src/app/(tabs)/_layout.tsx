@@ -72,6 +72,16 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="(broadcasts)/[streamName]"
+        options={{
+          href: null,
+          headerTitle: 'Название трансляции',
+          headerLeft: () => {
+            return <BackButton href="(broadcasts)" />;
+          },
+        }}
+      />
+      <Tabs.Screen
         name="(projects)/index"
         options={{
           title: 'Проекты',

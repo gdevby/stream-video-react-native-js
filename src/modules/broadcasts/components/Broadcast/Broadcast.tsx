@@ -5,13 +5,14 @@ import { PlayCircleIcon } from '@/src/components/icons/PlayCircleIcon';
 import { TimeDurationIcon } from '@/src/components/icons/TimeDurationIcon';
 import { Touchable } from '@/src/components/ui/Touchable';
 import { Color } from '@/src/lib/constants/color';
+import { Link } from 'expo-router';
 
 type Props = {
   broadcast: EntityModelBroadcastDto;
 };
 
 export const Broadcast = ({ broadcast }: Props) => {
-  const { title, dateOfStart, dateOfEnd } = broadcast;
+  const { title, dateOfStart, dateOfEnd, streamName } = broadcast;
   const isNew = true;
 
   const formatDate = dayjs(dateOfStart).format('DD.MM.YYYY');
@@ -27,32 +28,34 @@ export const Broadcast = ({ broadcast }: Props) => {
   }
 
   return (
-    <Touchable>
-      <View style={styles.container}>
-        <View style={styles.leftContainer}>
-          <View style={styles.titleContainer}>
-            {isNew && (
-              <View style={styles.labelContainer}>
-                <Text style={styles.label}>Новинка!</Text>
-              </View>
-            )}
-            <Text style={styles.title}>{title}</Text>
+    <Link href={`(broadcasts)/${streamName}`} asChild>
+      <Touchable>
+        <View style={styles.container}>
+          <View style={styles.leftContainer}>
+            <View style={styles.titleContainer}>
+              {isNew && (
+                <View style={styles.labelContainer}>
+                  <Text style={styles.label}>Новинка!</Text>
+                </View>
+              )}
+              <Text style={styles.title}>{title}</Text>
+            </View>
+            <View style={styles.dateContainer}>
+              <Text style={styles.date}>{formatDate}</Text>
+              {duration && (
+                <View style={styles.timeContainer}>
+                  <TimeDurationIcon />
+                  <Text style={styles.time}>{duration}</Text>
+                </View>
+              )}
+            </View>
           </View>
-          <View style={styles.dateContainer}>
-            <Text style={styles.date}>{formatDate}</Text>
-            {duration && (
-              <View style={styles.timeContainer}>
-                <TimeDurationIcon />
-                <Text style={styles.time}>{duration}</Text>
-              </View>
-            )}
+          <View style={styles.rightContainer}>
+            <PlayCircleIcon />
           </View>
         </View>
-        <View style={styles.rightContainer}>
-          <PlayCircleIcon />
-        </View>
-      </View>
-    </Touchable>
+      </Touchable>
+    </Link>
   );
 };
 
