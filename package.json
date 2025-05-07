@@ -29,6 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@openapitools/openapi-generator-cli": "^2.20.0",
+    "@react-native-community/cli": "^18.0.0",
     "@types/react": "~19.0.0",
     "typescript": "^5.3.3"
   },
