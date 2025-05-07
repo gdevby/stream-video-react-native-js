@@ -15,9 +15,18 @@
 - `npm run openapi:sdk` генерируем типы и запросы в папку `src/api`
 - Отменяем изменения в файле `src/api/base.ts`
 
-## Прод
-
 ## Разработка
 
 - `npm i` - устанавливаем пакеты
 - `npm run start` - запускаем приложение
+
+## Сборка
+
+- `npx expo prebuild --clean`
+- `npx react-native run-android --mode="debug"`
+- `npx react-native run-android --mode="release"`
+
+Сборка:
+
+- `npx react-native build-android --mode=debug`
+- `npx react-native build-android --mode=release`
