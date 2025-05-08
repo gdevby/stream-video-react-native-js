@@ -22,11 +22,16 @@
 
 ## Сборка
 
+- `rm -rf android` и `rm -rf ios` - удалить сгенерированные файлы с предыдущей итерации
+- `npx expo prebuild --clean` - создать папки android и ios с помощью js файлов
+
+Сборка в формате .apk:
+
 - `npx expo prebuild --clean`
 - `npx react-native run-android --mode="debug"`
-- `npx react-native run-android --mode="release"`
+- `npx react-native run-android --mode="release"` - без сервера от Expo
 
-Сборка:
+Сборка в формате .aab:
 
 - `npx react-native build-android --mode=debug`
-- `npx react-native build-android --mode=release`
+- `npx react-native build-android --mode=release` - без сервера от Expo
