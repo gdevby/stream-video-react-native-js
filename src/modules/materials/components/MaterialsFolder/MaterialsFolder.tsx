@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   },
 
   leftContainer: {
+    flex: 1,
     gap: 4,
   },
 

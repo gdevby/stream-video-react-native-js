@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   },
 
   leftContainer: {
+    flex: 1,
     marginVertical: 12,
     marginLeft: 12,
     gap: 10,

@@ -38,7 +38,9 @@ export const Broadcast = ({ broadcast }: Props) => {
                   <Text style={styles.label}>Новинка!</Text>
                 </View>
               )}
-              <Text style={styles.title}>{title}</Text>
+              <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+                {title}
+              </Text>
             </View>
             <View style={styles.dateContainer}>
               <Text style={styles.date}>{formatDate}</Text>
@@ -73,10 +75,12 @@ const styles = StyleSheet.create({
   },
 
   leftContainer: {
+    flex: 1,
     gap: 4,
   },
 
   titleContainer: {
+    flex: 1,
     flexDirection: 'row',
     gap: 4,
   },
