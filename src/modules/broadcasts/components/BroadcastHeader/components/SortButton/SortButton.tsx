@@ -11,7 +11,7 @@ type Props = {
 
 export const SortButton = ({ children, isSelected, onPress }: Props) => {
   return (
-    <Touchable onPress={onPress}>
+    <Touchable styles={styles.touchable} onPress={onPress}>
       <View style={[styles.button, isSelected && styles.buttonSelected]}>
         <Text style={[styles.text, isSelected && styles.textSelected]}>{children}</Text>
       </View>
@@ -20,11 +20,14 @@ export const SortButton = ({ children, isSelected, onPress }: Props) => {
 };
 
 const styles = StyleSheet.create({
-  button: {
+  touchable: {
+    borderRadius: 55,
     flexGrow: 1,
+  },
+
+  button: {
     backgroundColor: Color.LightBlue,
     paddingVertical: 12,
-    borderRadius: 55,
     boxShadow: '0 9 11 0px #00000008',
   },
 

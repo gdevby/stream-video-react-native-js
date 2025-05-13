@@ -24,7 +24,7 @@ export const Project = ({ project }: Props) => {
 
   return (
     <Link href={link ?? ''} asChild>
-      <Touchable>
+      <Touchable styles={styles.touchable}>
         <View style={styles.container}>
           <View style={styles.leftContainer}>
             <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
@@ -65,13 +65,16 @@ export const Project = ({ project }: Props) => {
 };
 
 const styles = StyleSheet.create({
+  touchable: {
+    borderRadius: 8,
+  },
+
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: 8,
     backgroundColor: Color.LightBlue,
-    borderRadius: 8,
     padding: 12,
   },
 

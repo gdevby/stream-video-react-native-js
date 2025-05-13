@@ -45,7 +45,7 @@ export const Material = ({ material }: Props) => {
 
   return (
     <Link href={`${BASE_BACKEND_PATH_API}/admin/referenceMaterials/download/${id}`} asChild>
-      <Touchable>
+      <Touchable styles={styles.touchable}>
         <View style={styles.container}>
           <View style={styles.leftContainer}>
             <Text style={styles.title}>{materialName}</Text>
@@ -65,11 +65,14 @@ export const Material = ({ material }: Props) => {
 };
 
 const styles = StyleSheet.create({
+  touchable: {
+    borderRadius: 8,
+  },
+
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: Color.LightBlue,
-    borderRadius: 8,
     padding: 12,
   },
 

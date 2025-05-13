@@ -33,7 +33,7 @@ export const Navigation = () => {
       {list.map(({ title, description, link }, index) => {
         return (
           <Link key={title} href={link} asChild>
-            <Touchable>
+            <Touchable styles={styles.touchable}>
               <View style={styles.button}>
                 <View style={styles.text}>
                   <Text style={[styles.title, { textAlign: index % 2 === 0 ? 'left' : 'right' }]}>{title}</Text>
@@ -51,6 +51,13 @@ export const Navigation = () => {
 };
 
 const styles = StyleSheet.create({
+  touchable: {
+    borderRadius: 16,
+    flexGrow: 1,
+    width: '100%',
+    flexBasis: '45%',
+  },
+
   container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -58,12 +65,8 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    width: '100%',
-    flexBasis: '45%',
-    flexGrow: 1,
     height: 180,
     backgroundColor: Color.LightBlue,
-    borderRadius: 16,
     padding: 8,
   },
 

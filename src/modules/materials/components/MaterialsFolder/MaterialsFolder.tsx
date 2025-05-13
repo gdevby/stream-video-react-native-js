@@ -27,7 +27,7 @@ export const MaterialsFolder = ({ materialsFolder }: Props) => {
 
   return (
     <Link href={`(materials)/${id}`} asChild>
-      <Touchable>
+      <Touchable styles={styles.touchable}>
         <View style={styles.container}>
           <View style={styles.leftContainer}>
             <Text style={styles.title}>{folderName}</Text>
@@ -61,12 +61,15 @@ export const MaterialsFolder = ({ materialsFolder }: Props) => {
 };
 
 const styles = StyleSheet.create({
+  touchable: {
+    borderRadius: 8,
+  },
+
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: Color.LightBlue,
-    borderRadius: 8,
     padding: 12,
   },
 

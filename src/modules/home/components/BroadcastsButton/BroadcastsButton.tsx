@@ -7,7 +7,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export const BroadcastsButton = () => {
   return (
     <Link href="/(broadcasts)" asChild>
-      <Touchable>
+      <Touchable styles={styles.touchable}>
         <View style={styles.videoPlayerContainer}>
           <Text style={styles.text}>Трансляции</Text>
           <VideoPlayerIcon />
@@ -18,6 +18,10 @@ export const BroadcastsButton = () => {
 };
 
 const styles = StyleSheet.create({
+  touchable: {
+    borderRadius: 16,
+  },
+
   videoPlayerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -25,7 +29,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 17,
     backgroundColor: Color.LightBlue,
-    borderRadius: 16,
   },
 
   text: {

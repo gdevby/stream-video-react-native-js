@@ -29,7 +29,7 @@ export const Broadcast = ({ broadcast }: Props) => {
 
   return (
     <Link href={`(broadcasts)/${streamName}`} asChild>
-      <Touchable>
+      <Touchable styles={styles.touchable}>
         <View style={styles.container}>
           <View style={styles.leftContainer}>
             <View style={styles.titleContainer}>
@@ -60,12 +60,15 @@ export const Broadcast = ({ broadcast }: Props) => {
 };
 
 const styles = StyleSheet.create({
+  touchable: {
+    borderRadius: 8,
+  },
+
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: Color.LightBlue,
-    borderRadius: 8,
     padding: 12,
   },
 

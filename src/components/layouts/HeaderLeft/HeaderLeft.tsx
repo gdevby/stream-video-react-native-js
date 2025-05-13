@@ -2,7 +2,7 @@ import { ArrowLeftIcon } from '@/src/components/icons/ArrowLeftIcon';
 import { Touchable } from '@/src/components/ui/Touchable';
 import { paddingHorizontalOfLayout } from '@/src/lib/constants/common';
 import { Link } from 'expo-router';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 type Props = {
   href: string;
@@ -10,10 +10,10 @@ type Props = {
 
 export const HeaderLeft = ({ href }: Props) => {
   return (
-    <View style={{ paddingLeft: paddingHorizontalOfLayout + 8 }}>
+    <View style={styles.wrapper}>
       <Link href={href} asChild>
-        <Touchable>
-          <View>
+        <Touchable styles={styles.touchable}>
+          <View style={styles.iconWrapper}>
             <ArrowLeftIcon />
           </View>
         </Touchable>
@@ -21,3 +21,17 @@ export const HeaderLeft = ({ href }: Props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    paddingLeft: paddingHorizontalOfLayout,
+  },
+
+  touchable: {
+    borderRadius: 9999,
+  },
+
+  iconWrapper: {
+    padding: 8,
+  },
+});

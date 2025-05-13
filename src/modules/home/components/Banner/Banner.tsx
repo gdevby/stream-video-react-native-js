@@ -8,7 +8,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export const Banner = () => {
   return (
     <Link href="https://vk.com/artcaramelkids" asChild>
-      <Touchable>
+      <Touchable styles={styles.touchable}>
         <View style={styles.container}>
           <View style={styles.leftContainer}>
             <Text style={styles.title}>Наша группа Vk</Text>
@@ -29,13 +29,16 @@ export const Banner = () => {
 };
 
 const styles = StyleSheet.create({
+  touchable: {
+    borderRadius: 12,
+  },
+
   container: {
     flexShrink: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: 10,
     backgroundColor: Color.DarkBlue,
-    borderRadius: 12,
   },
 
   leftContainer: {

@@ -1,5 +1,12 @@
 import { forwardRef, ReactNode } from 'react';
-import { TouchableNativeFeedback, TouchableOpacity, Platform, GestureResponderEvent, ViewStyle } from 'react-native';
+import {
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  Platform,
+  GestureResponderEvent,
+  ViewStyle,
+  View,
+} from 'react-native';
 
 type Props = {
   children: ReactNode;
@@ -9,12 +16,16 @@ type Props = {
 
 export const Touchable = forwardRef<any, Props>(({ children, styles, onPress }, ref) => {
   return Platform.OS === 'android' ? (
-    <TouchableNativeFeedback ref={ref} style={styles} onPress={onPress}>
-      {children}
-    </TouchableNativeFeedback>
+    <View style={[{ overflow: 'hidden' }, styles]}>
+      <TouchableNativeFeedback ref={ref} style={styles} onPress={onPress}>
+        {children}
+      </TouchableNativeFeedback>
+    </View>
   ) : (
-    <TouchableOpacity ref={ref} style={styles} onPress={onPress}>
-      {children}
-    </TouchableOpacity>
+    <View style={[{ overflow: 'hidden' }, styles]}>
+      <TouchableOpacity ref={ref} style={styles} onPress={onPress}>
+        {children}
+      </TouchableOpacity>
+    </View>
   );
 });
