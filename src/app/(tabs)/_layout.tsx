@@ -5,19 +5,22 @@ import { HomeIcon } from '@/src/components/icons/HomeIcon';
 import { ProjectIcon } from '@/src/components/icons/ProjectIcon';
 import { ShopIcon } from '@/src/components/icons/ShopIcon';
 import { Color } from '@/src/lib/constants/color';
-import { calendarUrl } from '@/src/lib/constants/common';
+import { calendarUrl, headerHeight, tabBarHeight } from '@/src/lib/constants/common';
 import { TabBarLabel } from '@/src/components/TabBarLabel';
 import { BackButton } from '@/src/components/BackButton';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function TabLayout() {
+  const { bottom, top } = useSafeAreaInsets();
+
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Color.DarkBlue,
         tabBarInactiveTintColor: Color.Blue,
         tabBarStyle: {
-          height: 55,
           backgroundColor: Color.LightBlue,
+          height: tabBarHeight + bottom,
         },
         headerTitleStyle: {
           fontSize: 18,
@@ -27,9 +30,9 @@ export default function TabLayout() {
         headerStyle: {
           backgroundColor: Color.LightGray,
           borderWidth: 0,
-          height: 48,
           shadowOpacity: 0,
           elevation: 0,
+          height: headerHeight + top,
         },
       }}
     >

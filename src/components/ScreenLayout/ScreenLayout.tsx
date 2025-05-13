@@ -1,4 +1,5 @@
 import { Color } from '@/src/lib/constants/color';
+import { paddingHorizontalOfLayout, paddingVerticalOfLayout } from '@/src/lib/constants/common';
 import { ReactNode } from 'react';
 import { ScrollView, ViewStyle } from 'react-native';
 
@@ -9,7 +10,13 @@ type Props = {
 
 export const ScreenLayout = ({ children, styles }: Props) => {
   return (
-    <ScrollView style={{ backgroundColor: Color.LightGray }} contentContainerStyle={[{ padding: 16 }, styles]}>
+    <ScrollView
+      style={{ backgroundColor: Color.LightGray }}
+      contentContainerStyle={[
+        { paddingHorizontal: paddingHorizontalOfLayout, paddingVertical: paddingVerticalOfLayout },
+        styles,
+      ]}
+    >
       {children}
     </ScrollView>
   );

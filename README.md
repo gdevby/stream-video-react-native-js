@@ -27,7 +27,6 @@
 
 Сборка в формате .apk:
 
-- `npx expo prebuild --clean`
 - `npx react-native run-android --mode="debug"`
 - `npx react-native run-android --mode="release"` - без сервера от Expo
 
