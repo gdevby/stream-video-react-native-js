@@ -7,8 +7,8 @@ import { ShopIcon } from '@/src/components/icons/ShopIcon';
 import { Color } from '@/src/lib/constants/color';
 import { calendarUrl, headerHeight, tabBarHeight } from '@/src/lib/constants/common';
 import { TabBarLabel } from '@/src/components/TabBarLabel';
-import { BackButton } from '@/src/components/BackButton';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { HeaderLeft } from '@/src/components/layouts/HeaderLeft';
 
 export default function TabLayout() {
   const { bottom, top } = useSafeAreaInsets();
@@ -70,7 +70,7 @@ export default function TabLayout() {
             return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
           },
           headerLeft: () => {
-            return <BackButton href="(home)" />;
+            return <HeaderLeft href="(home)" />;
           },
         }}
       />
@@ -80,7 +80,7 @@ export default function TabLayout() {
           href: null,
           headerTitle: 'Название трансляции',
           headerLeft: () => {
-            return <BackButton href="(broadcasts)" />;
+            return <HeaderLeft href="(broadcasts)" />;
           },
         }}
       />
@@ -94,7 +94,7 @@ export default function TabLayout() {
             return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
           },
           headerLeft: () => {
-            return <BackButton href="(home)" />;
+            return <HeaderLeft href="(home)" />;
           },
         }}
       />
@@ -109,7 +109,7 @@ export default function TabLayout() {
             return <TabBarLabel focused={focused}>{children}</TabBarLabel>;
           },
           headerLeft: () => {
-            return <BackButton href="(home)" />;
+            return <HeaderLeft href="(home)" />;
           },
         }}
       />
