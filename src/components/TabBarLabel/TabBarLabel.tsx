@@ -11,6 +11,7 @@ export const TabBarLabel = ({ children, focused }: Props) => {
   return (
     <Text
       style={{
+        fontFamily: 'Inter_400Regular',
         fontSize: 10,
         fontWeight: '400',
         lineHeight: 12,

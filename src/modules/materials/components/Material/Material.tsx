@@ -82,12 +82,14 @@ const styles = StyleSheet.create({
   },
 
   title: {
+    fontFamily: 'Inter_600SemiBold',
     color: '#0C3955',
     fontSize: 16,
     fontWeight: '600',
   },
 
   description: {
+    fontFamily: 'Inter_400Regular',
     color: '#0C3955',
     fontSize: 14,
     fontWeight: '400',
@@ -100,6 +102,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
+    fontFamily: 'Inter_400Regular',
     fontSize: 14,
     fontWeight: '400',
     color: Color.Blue,

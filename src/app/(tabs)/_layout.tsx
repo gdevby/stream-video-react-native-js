@@ -23,6 +23,7 @@ export default function TabLayout() {
           height: tabBarHeight + bottom,
         },
         headerTitleStyle: {
+          fontFamily: 'Inter_500Medium',
           fontSize: 18,
           fontWeight: 500,
           color: '#0C3955',

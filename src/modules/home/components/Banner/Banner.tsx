@@ -49,12 +49,14 @@ const styles = StyleSheet.create({
   },
 
   title: {
+    fontFamily: 'Inter_600SemiBold',
     color: Color.White,
     fontSize: 18,
     fontWeight: '600',
   },
 
   subtitle: {
+    fontFamily: 'Inter_400Regular',
     fontSize: 14,
     fontWeight: '400',
     color: Color.White,

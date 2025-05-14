@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
+    fontFamily: 'Inter_600SemiBold',
     fontSize: 18,
     color: '#0C3955',
     fontWeight: 600,

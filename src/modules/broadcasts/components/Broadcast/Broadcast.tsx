@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
   labelContainer: {},
 
   label: {
+    fontFamily: 'Inter_600SemiBold',
     color: Color.White,
     fontSize: 12,
     fontWeight: 600,
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
+    fontFamily: 'Inter_600SemiBold',
     color: '#0C3955',
     fontSize: 18,
     fontWeight: '600',
@@ -108,6 +110,7 @@ const styles = StyleSheet.create({
   },
 
   date: {
+    fontFamily: 'Inter_400Regular',
     fontSize: 14,
     fontWeight: '400',
     color: Color.Blue,
@@ -120,6 +123,7 @@ const styles = StyleSheet.create({
   },
 
   time: {
+    fontFamily: 'Inter_400Regular',
     fontSize: 14,
     fontWeight: 400,
     color: '#0C3955',
