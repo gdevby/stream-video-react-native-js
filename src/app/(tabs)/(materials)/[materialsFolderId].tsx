@@ -1,21 +1,32 @@
-import { FrontApi } from '@/src/api';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { useLocalSearchParams, useNavigation } from 'expo-router';
+import { useEffect } from 'react';
+import { AxiosResponse } from 'axios';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { FrontApi, MaterialFolderDto } from '@/src/api';
 import { ScreenLayout } from '@/src/components/ScreenLayout';
 import { Material } from '@/src/modules/materials/components/Material';
-import { useQuery } from '@tanstack/react-query';
-import { useLocalSearchParams } from 'expo-router';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 const frontApi = new FrontApi();
 
 const MaterialScreen = () => {
+  const queryClient = useQueryClient();
+  const navigation = useNavigation();
   const { materialsFolderId } = useLocalSearchParams();
+  const foldersData: AxiosResponse<MaterialFolderDto[], any> | undefined = queryClient.getQueryData(['getFolders']);
+  const folderName = foldersData?.data.find(({ id }) => id === Number(materialsFolderId))?.folderName;
 
   const queryKey = 'getMaterialsInFolder';
-
   const { data, isFetching } = useQuery({
     queryKey: [queryKey, materialsFolderId],
     queryFn: async () => frontApi.getMaterialsInFolder(Number(materialsFolderId)),
   });
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: folderName,
+    });
+  }, [navigation]);
 
   return (
     <ScreenLayout>

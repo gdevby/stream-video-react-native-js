@@ -117,6 +117,9 @@ export default function TabLayout() {
         name="(materials)/[materialsFolderId]"
         options={{
           href: null,
+          headerLeft: () => {
+            return <HeaderLeft href="(materials)" />;
+          },
         }}
       />
       {/* hide unused section */}
