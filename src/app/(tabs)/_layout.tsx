@@ -35,6 +35,7 @@ export default function TabLayout() {
           height: headerHeight + top,
         },
       }}
+      initialRouteName="(home)/index"
     >
       <Tabs.Screen
         name="(home)/index"

@@ -30,6 +30,8 @@
 - `npx react-native run-android --mode="debug"`
 - `npx react-native run-android --mode="release"` - без сервера от Expo
 
+Собранный apk файл будет лежать в папке `android/app/build/outputs/apk/release/app-release.apk`
+
 Сборка в формате .aab:
 
 - `npx react-native build-android --mode=debug`
