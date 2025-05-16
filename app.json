@@ -20,20 +20,12 @@
     "android": {
       "buildType": "apk",
       "edgeToEdgeEnabled": true,
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
       "package": "com.anonymous.streamappreactnative"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-router",
-      "expo-video",
-      "expo-font"
-    ],
+    "plugins": ["expo-router", "expo-video", "expo-font"],
     "extra": {
       "router": {},
       "eas": {
