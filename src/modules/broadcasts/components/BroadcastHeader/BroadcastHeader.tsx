@@ -5,6 +5,7 @@ import { ListIcon } from '@/src/components/icons/ListIcon';
 import { SearchIcon } from '@/src/components/icons/SearchIcon';
 import { Color } from '@/src/lib/constants/color';
 import { SortButton } from '@/src/modules/broadcasts/components/BroadcastHeader/components/SortButton';
+import { Touchable } from '@/src/components/ui/Touchable';
 
 const data = [
   {
@@ -27,9 +28,10 @@ const data = [
 
 type Props = {
   onStatusChange: (status?: `${GetSortedBroadcastStatusEnum}`) => void;
+  onListIconPress: () => void;
 };
 
-export const BroadcastHeader = ({ onStatusChange }: Props) => {
+export const BroadcastHeader = ({ onStatusChange, onListIconPress }: Props) => {
   const [currentStatus, setCurrentStatus] = useState<`${GetSortedBroadcastStatusEnum}`>();
 
   const handleSortButtonPress = (status?: `${GetSortedBroadcastStatusEnum}`) => {
@@ -49,18 +51,27 @@ export const BroadcastHeader = ({ onStatusChange }: Props) => {
         })}
       </View>
       <View style={styles.iconsContainer}>
-        <View style={styles.iconWrapper}>
-          <ListIcon />
-        </View>
-        <View style={styles.iconWrapper}>
-          <SearchIcon />
-        </View>
+        <Touchable styles={styles.touchable} onPress={onListIconPress}>
+          <View style={styles.iconWrapper}>
+            <ListIcon />
+          </View>
+        </Touchable>
+
+        <Touchable styles={styles.touchable}>
+          <View style={styles.iconWrapper}>
+            <SearchIcon />
+          </View>
+        </Touchable>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  touchable: {
+    borderRadius: 9999,
+  },
+
   container: {
     gap: 8,
   },

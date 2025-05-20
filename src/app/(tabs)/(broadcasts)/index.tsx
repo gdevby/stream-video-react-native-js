@@ -10,22 +10,30 @@ const frontMobileApi = new FrontMobileApi();
 
 const BroadcastsScreen = () => {
   const [status, setStatus] = useState<GetSortedBroadcastStatusEnum>();
+  const [order, setOrder] = useState<`${GetSortedBroadcastOrderEnum}`>(GetSortedBroadcastOrderEnum.Desc);
   const queryKey = 'getSortedBroadcast';
   const currentPage = 0;
   const currentPageSize = 1000;
   const title: string | undefined = undefined;
   const sort: string | undefined = 'id';
-  const order: GetSortedBroadcastOrderEnum | undefined = GetSortedBroadcastOrderEnum.Desc;
 
   const { data, isFetching } = useQuery({
-    queryKey: [queryKey, status],
+    queryKey: [queryKey, status, order],
     queryFn: async () => frontMobileApi.getSortedBroadcast(currentPage, currentPageSize, status, title, sort, order),
   });
+
+  const changeOrder = () => {
+    setOrder(prevValue =>
+      prevValue === GetSortedBroadcastOrderEnum.Desc
+        ? GetSortedBroadcastOrderEnum.Asc
+        : GetSortedBroadcastOrderEnum.Desc,
+    );
+  };
 
   return (
     <ScreenLayout>
       <View style={styles.container}>
-        <BroadcastHeader onStatusChange={setStatus} />
+        <BroadcastHeader onStatusChange={setStatus} onListIconPress={changeOrder} />
         {isFetching && <ActivityIndicator size="large" />}
         {!isFetching &&
           data?.data._embedded?.broadcastDtoes?.map(broadcast => {
